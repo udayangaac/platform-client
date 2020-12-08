@@ -22,11 +22,8 @@ class Header extends Component {
     }
 
     renderAppBarUser() {
-
         let profile = AuthService.getLocalStorageProfile();
-        console.log(profile);
-
-        if (profile != undefined) {
+        if (profile !== undefined) {
             return (
                 <Toolbar>
                     <IconButton edge="start" color="inherit" aria-label="menu">

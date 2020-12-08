@@ -1,13 +1,229 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fffb4993-5068-40f2-b9de-bb53fa73db47" name="Default Changelist" comment="Updated the project">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/dashboard/Dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/dashboard/Dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/dashboard/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/auth/Logout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/Logout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/defaultLayout/DefaultLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/defaultLayout/DefaultLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/login/LoginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/login/LoginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/login/Login.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="GOROOT" path="/usr/lib/go-1.15.5/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1kjzQPmPuZPhiuefihUmfGgc7Ng" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/view" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view" />
+      <recent name="$PROJECT_DIR$/src/service" />
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/components/login" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/view" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.Login service testing">
+    <configuration name="Login service testing" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$/src/service/login" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/service/login/LoginService.test.js" />
+      <test-names>
+        <test-name value="Login service testing" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.Login service testing" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updated the project" />
+    <MESSAGE value="Updated the project." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the project." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1607424714435">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1607424714435" />
+    <state x="247" y="121" width="1478" height="879" key="DiffContextDialog" timestamp="1607424692919">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="247" y="121" width="1478" height="879" key="DiffContextDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607424692919" />
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1606233574127">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1606233574127" />
+    <state width="528" height="349" key="GridCell.Tab.0.bottom" timestamp="1607431209664">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209664" />
+    <state width="528" height="349" key="GridCell.Tab.0.center" timestamp="1607431209663">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209663" />
+    <state width="528" height="349" key="GridCell.Tab.0.left" timestamp="1607431209662">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209662" />
+    <state width="528" height="349" key="GridCell.Tab.0.right" timestamp="1607431209663">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209663" />
+    <state width="528" height="349" key="GridCell.Tab.1.bottom" timestamp="1607431209665">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.1.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209665" />
+    <state width="528" height="349" key="GridCell.Tab.1.center" timestamp="1607431209664">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.1.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209664" />
+    <state width="528" height="349" key="GridCell.Tab.1.left" timestamp="1607431209664">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.1.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209664" />
+    <state width="528" height="349" key="GridCell.Tab.1.right" timestamp="1607431209665">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.1.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209665" />
+    <state width="528" height="349" key="GridCell.Tab.2.bottom" timestamp="1607431209667">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.2.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209667" />
+    <state width="528" height="349" key="GridCell.Tab.2.center" timestamp="1607431209666">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.2.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209666" />
+    <state width="528" height="349" key="GridCell.Tab.2.left" timestamp="1607431209665">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.2.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209665" />
+    <state width="528" height="349" key="GridCell.Tab.2.right" timestamp="1607431209666">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.2.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209666" />
+    <state width="528" height="349" key="GridCell.Tab.3.bottom" timestamp="1607431209668">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.3.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209668" />
+    <state width="528" height="349" key="GridCell.Tab.3.center" timestamp="1607431209667">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.3.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209667" />
+    <state width="528" height="349" key="GridCell.Tab.3.left" timestamp="1607431209667">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.3.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209667" />
+    <state width="528" height="349" key="GridCell.Tab.3.right" timestamp="1607431209668">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="528" height="349" key="GridCell.Tab.3.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209668" />
+    <state x="441" y="246" width="599" height="621" key="RollbackChangesDialog" timestamp="1607452493968">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="441" y="246" width="599" height="621" key="RollbackChangesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607452493968" />
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1607424725842">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1607424725842" />
+    <state x="223" y="27" width="708" height="853" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607452602961">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="223" y="27" width="708" height="853" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607452602961" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1607431215898">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1607431215898" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/header/Header.js</url>
+          <line>37</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/service/login/LoginService.js</url>
+          <line>10</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

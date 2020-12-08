@@ -21,15 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MenuAppBar() {
+export default function MenuAppBar(data) {
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
-
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -38,54 +33,65 @@ export default function MenuAppBar() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon/>
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Photos
-                    </Typography>
-                    {auth && (
-                        <div>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                color="inherit"
-                            >
-                                <Avatar/>
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <IconButton href="/logout">Logout</IconButton>
-                            </Menu>
-                        </div>
-                    )}
-                    {
-                        !auth && (
+                {data.auth !== null && (
+                    <Toolbar>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                        </Typography>
+                        <section>
+                            <Typography variant="h6" className={classes.title}>
+                                {data.profile.user_name}
+                            </Typography>
+                            <div>
+                                <IconButton
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={handleMenu}
+                                    color="inherit"
+                                >
+                                    <Avatar/>
+                                </IconButton>
+                                <Menu
+                                    id="menu-appbar"
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={open}
+                                    onClose={handleClose}
+                                >
+                                    <IconButton href="/logout">Logout</IconButton>
+                                </Menu>
+                            </div>
+                        </section>
+                    </Toolbar>
+                )}
+                {data.auth === null && (
+                    <Toolbar>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                        </Typography>
+                        <section>
                             <div>
                                 <Button color="inherit" href="/login">Logout</Button>
                             </div>
-                        )}
-                </Toolbar>
+                        </section>
+                    </Toolbar>
+                )}
             </AppBar>
         </div>
     );

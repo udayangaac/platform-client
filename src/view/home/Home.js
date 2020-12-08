@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import MainContainer from "../../components/layout/mainContainer";
+import MenuAppBar from "../../components/header/MenuAppBar";
 
 const styles = {
     cardAction: {
@@ -30,28 +31,11 @@ const styles = {
 };
 
 function Home(props) {
+
+
     return (
-        // <Card className={props.classes.root}>
-        //     <ButtonBase
-        //         className={props.classes.cardAction}
-        //         onClick={event => {}}>
-        //         <CardContent>
-        //             <Typography className={props.classes.title} color="textSecondary" gutterBottom>
-        //             </Typography>
-        //             <Typography variant="h5" component="h2">
-        //                 Hello
-        //             </Typography>
-        //             <Typography className={props.classes.pos} color="textSecondary">
-        //                 adjective
-        //             </Typography>
-        //             <Typography variant="body2" component="p">
-        //                 <br />
-        //                 {'"a benevolent smile"'}
-        //             </Typography>
-        //         </CardContent>
-        //     </ButtonBase>
-        // </Card>
         <section>
+            <MenuAppBar/>
             <MainContainer/>
         </section>
     );

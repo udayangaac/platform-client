@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Home from "../";
 import {withRouter} from 'react-router-dom'
 import AuthService from "../../service/auth";
 
@@ -7,20 +6,19 @@ class Auth extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: undefined
+            user: null
         }
     }
 
     componentDidMount() {
+        let profile = AuthService.getLocalStorageProfile();
+        console.log("Get profile from local storage", profile);
         this.setState({
-            user: AuthService.getLocalStorageProfile(),
+            user:profile,
         })
     }
 
     render() {
-        if (this.state.user === undefined) {
-            this.props.history.push('/login')
-        }
         return (
             <section>{this.props.children}</section>
         )

@@ -2,22 +2,26 @@ import React, {Component} from "react";
 import FacebookLogin from 'react-facebook-login';
 import setProfile from "../../service/login";
 import AuthService from "../../service/auth";
+import axios from "axios";
 
 class Login extends Component {
 
+    constructor(props) {
+        super(props);
+    }
+
     responseFacebook = (response) => {
-        setProfile(response.accessToken);
-        this.props.history.push('/');
-    };
-    componentClicked = (response) => {
-        console.log(response);
+        axios.get("http://localhost:8085/oauth2/v1/fb/authenticate?access_token=" + response.accessToken).then(res => {
+            console.log(res.data);
+            AuthService.setLocalStorage(res.data);
+            this.props.history.push("/");
+        }).catch(err => {
+
+        });
     };
 
-    componentDidMount() {
-        if (AuthService.getLocalStorageProfile() != undefined ){
-            this.props.history.push('/');
-        }
-    }
+    componentClicked = (response) => {
+    };
 
     render() {
         return (

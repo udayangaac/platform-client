@@ -4,7 +4,7 @@ import AuthService from "../../service/auth";
 class Logout extends Component {
     componentDidMount() {
         AuthService.clearLocalStorage();
-        this.props.history.push("/")
+        this.props.history.push("/");
     }
     render() {
         return null;
