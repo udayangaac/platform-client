@@ -1,53 +1,65 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
+import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Chip from '@material-ui/core/Chip';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const useStyles = makeStyles({
+
+const useStyles = makeStyles((theme) => ({
     root: {
-        //minWidth: 275,
+        position: 'relative',
     },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+    media: {
+        minHeight: 200,
+    },
+    locationTagContainer: {
+        position: 'absolute',
+        top: theme.spacing(0.5),
+        left: theme.spacing(0.5),
+    },
+    locationTag: {
+        margin: theme.spacing(0.5),
+        fontFamily: " 'Open Sans', sans-serif;",
     },
     title: {
-        fontSize: 14,
-    },
-    pos: {
-        margin: 12,
-
-    },
-});
-
+        fontFamily: " 'Open Sans', sans-serif;",
+    }
+}));
 export default function SimpleCard() {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
     return (
         <Card className={classes.root}>
-            <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Word of the Day
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    be{}nev{bull}o{bull}lent
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    adjective
-                </Typography>
-                <Typography variant="body2" component="p">
-                    well meaning and kindly.
-                    <br />
-                    {'"a benevolent smile"'}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
+            <CardActionArea>
+                <CardMedia
+                    className={classes.media}
+                    image="https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
+                    title=""
+                />
+                <CardContent>
+                    <Typography  className={classes.title} gutterBottom variant="h5" component="h2">
+                        Advertisement Name
+                    </Typography>
+                    <Typography className={classes.title} variant="body2" color="textSecondary" component="p">
+                        Advertisement description part...
+                    </Typography>
+                    <Typography className={classes.title} variant="h5" color="textSecondary">
+                        <b>Rs: 5000.00</b>
+                    </Typography>
+                </CardContent>
+                <div className={classes.locationTagContainer}>
+                    <Chip
+                        className={classes.locationTag}
+                        size="small"
+                        color={"primary"}
+                        label="Horana"
+                        icon={<LocationOnIcon/>}
+                    />
+                </div>
+            </CardActionArea>
         </Card>
     );
 }

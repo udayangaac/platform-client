@@ -1,0 +1,6 @@
+{
+  "name": "AdminContainer",
+  "version": "0.0.0",
+  "private": true,
+  "main": "AdminContainer.js"
+}

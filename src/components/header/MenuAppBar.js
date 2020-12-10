@@ -8,6 +8,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import AuthService from "../../services/auth";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,80 +20,87 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         flexGrow: 1,
+        fontFamily: " 'Montserrat', sans-serif",
     },
 }));
 
-export default function MenuAppBar(data) {
+export default function MenuAppBar() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
+    const profile = AuthService.getLocalStorageProfile();
+    let AppBarItems = (<span/>);
+    if (profile !== null) {
+        const handleOpenDropdown = Boolean(anchorEl);
 
-    const handleMenu = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+        const handleDropdown = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+        const handleCloseDropdown = () => {
+            setAnchorEl(null);
+        };
+
+        AppBarItems = (
+            <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <MenuIcon/>
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                    {profile.user_name}
+                </Typography>
+                <section>
+                    <div>
+                        <IconButton
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleDropdown}
+                            color="inherit"
+                        >
+                            <Avatar src={profile.profile_image}/>
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={handleOpenDropdown}
+                            onClose={handleCloseDropdown}
+                        >
+                            <Button size="small" startIcon={<DeleteIcon />} href="/logout">Logout</Button>
+                        </Menu>
+                    </div>
+                </section>
+            </Toolbar>
+        )
+    } else {
+        AppBarItems = (
+            <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <MenuIcon/>
+                </IconButton>
+                <Typography variant="h6" className={classes.title}>
+                </Typography>
+                <section>
+                    <div>
+                        <Button size="small" color="inherit" href="/login">Login</Button>
+                    </div>
+                </section>
+            </Toolbar>
+        )
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                {data.auth !== null && (
-                    <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                        </Typography>
-                        <section>
-                            <Typography variant="h6" className={classes.title}>
-                                {data.profile.user_name}
-                            </Typography>
-                            <div>
-                                <IconButton
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleMenu}
-                                    color="inherit"
-                                >
-                                    <Avatar/>
-                                </IconButton>
-                                <Menu
-                                    id="menu-appbar"
-                                    anchorEl={anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={open}
-                                    onClose={handleClose}
-                                >
-                                    <IconButton href="/logout">Logout</IconButton>
-                                </Menu>
-                            </div>
-                        </section>
-                    </Toolbar>
-                )}
-                {data.auth === null && (
-                    <Toolbar>
-                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                        </Typography>
-                        <section>
-                            <div>
-                                <Button color="inherit" href="/login">Logout</Button>
-                            </div>
-                        </section>
-                    </Toolbar>
-                )}
+                {AppBarItems}
             </AppBar>
         </div>
     );

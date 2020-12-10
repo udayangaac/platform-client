@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {AppBar, Avatar, IconButton, Toolbar} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Button from '@material-ui/core/Button';
-import AuthService from "../../service/auth";
+import AuthService from "../../services/auth";
 
 
 class Header extends Component {

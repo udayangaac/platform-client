@@ -1,5 +1,5 @@
 import LoginService from "./LoginService";
 
-test('Login service testing', () => {
+test('Login services testing', () => {
     LoginService.getProfile()
 });

@@ -1,12 +1,13 @@
 import React, {Component, Suspense} from "react";
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import AuthService from "../../../service/auth";
+import AuthService from "../../../services/auth";
 import Auth from "../../auth/Auth";
 import Logout from "../../auth/Logout"
 
-const LoginView = React.lazy(() => import('../../../view/login/Login'));
-const HomeView = React.lazy(() => import('../../../view/home/Home'));
-const DashboardView = React.lazy(() => import('../../../view/dashboard/Dashboard'));
+const LoginView = React.lazy(() => import('../../../views/login/Login'));
+const HomeView = React.lazy(() => import('../../../views/home/Home'));
+const DashboardView = React.lazy(() => import('../../../views/dashboard/Dashboard'));
+
 
 class DefaultLayout extends Component {
 

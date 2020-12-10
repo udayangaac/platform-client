@@ -1,24 +1,17 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom'
-import AuthService from "../../service/auth";
+import AuthService from "../../services/auth";
+import Login from "../../views/login";
 
 class Auth extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: null
-        }
     }
-
-    componentDidMount() {
-        let profile = AuthService.getLocalStorageProfile();
-        console.log("Get profile from local storage", profile);
-        this.setState({
-            user:profile,
-        })
-    }
-
     render() {
+        let profile = AuthService.getLocalStorageProfile();
+        if (profile=== null || profile=== undefined){
+            return (<Login/>)
+        }
         return (
             <section>{this.props.children}</section>
         )

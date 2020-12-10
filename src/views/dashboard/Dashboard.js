@@ -1,12 +1,8 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import ButtonBase from '@material-ui/core/ButtonBase';
 import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 import React from "react";
-import MainContainer from "../../components/layout/mainContainer";
 import MenuAppBar from "../../components/header/MenuAppBar";
+import UserContainer from "../../components/layouts/userContainer";
+import AdminContainer from "../../components/layouts/adminContainer";
 
 const styles = {
     cardAction: {
@@ -30,15 +26,15 @@ const styles = {
     },
 };
 
-function Home(props) {
-
-
+function Dashboard(props) {
     return (
         <section>
             <MenuAppBar/>
-            <MainContainer/>
+            <UserContainer/>
+            <AdminContainer/>
         </section>
     );
 }
-export default withStyles(styles)(Home)
+
+export default withStyles(styles)(Dashboard)
 
