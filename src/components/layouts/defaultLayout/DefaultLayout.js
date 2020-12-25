@@ -49,9 +49,5 @@ class DefaultLayout extends Component {
             </section>
         );
     }
-
-
 }
-
-
 export default DefaultLayout
