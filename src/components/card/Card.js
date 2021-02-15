@@ -29,10 +29,11 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: " 'Open Sans', sans-serif;",
     }
 }));
+
 export default function SimpleCard() {
     const classes = useStyles();
     return (
-        <Card className={classes.root}>
+        <Card  className={classes.root}>
             <CardActionArea>
                 <CardMedia
                     className={classes.media}

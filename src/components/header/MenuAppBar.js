@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import AuthService from "../../services/auth";
+import MenuItem from "@material-ui/core/MenuItem";
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +43,7 @@ export default function MenuAppBar() {
 
         AppBarItems = (
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton href="/" edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <MenuIcon/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
@@ -74,7 +75,12 @@ export default function MenuAppBar() {
                             open={handleOpenDropdown}
                             onClose={handleCloseDropdown}
                         >
-                            <Button size="small" startIcon={<DeleteIcon />} href="/logout">Logout</Button>
+                            <MenuItem>
+                                <Button size="small" href="/dashboard">dashboard</Button>
+                            </MenuItem>
+                            <MenuItem>
+                                <Button size="small" startIcon={<DeleteIcon />} href="/logout">Logout</Button>
+                            </MenuItem>
                         </Menu>
                     </div>
                 </section>

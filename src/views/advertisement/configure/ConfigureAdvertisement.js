@@ -1,8 +1,6 @@
 import withStyles from "@material-ui/core/styles/withStyles";
 import React from "react";
-import MenuAppBar from "../../components/header/MenuAppBar";
-import UserContainer from "../../components/layouts/userContainer";
-import AdminContainer from "../../components/layouts/adminContainer";
+import MenuAppBar from "../../../components/header/MenuAppBar";
 
 const styles = {
     cardAction: {
@@ -26,14 +24,14 @@ const styles = {
     },
 };
 
-function Dashboard(props) {
+function ConfigureAdvertisement(props) {
     return (
         <section>
             <MenuAppBar/>
-            <UserContainer/>
+            <h1>Configure Advertisement</h1>
         </section>
     );
 }
 
-export default withStyles(styles)(Dashboard)
+export default withStyles(styles)(ConfigureAdvertisement)
 

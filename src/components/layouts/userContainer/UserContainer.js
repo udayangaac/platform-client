@@ -15,11 +15,12 @@ import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
-import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import TextField from "@material-ui/core/TextField";
+import axios from "axios";
+import getBaseURL from "../../../services/api/getBaseURL";
+import getBearerToken from "../../../services/api/getBearerToken";
+import getImageURL from "../../../services/api/getResouceURL";
 
 const styles = (theme) => ({
     gridContainer: {},
@@ -54,17 +55,50 @@ const styles = (theme) => ({
             margin: theme.spacing(1),
             width: 200,
         }
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: 0,
+        borderRadius: 0,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'white',
+        "&:focus": {
+            outline: "none",
+            border: 0,
+        },
+        "&:active": {
+            outline: "none",
+            border: 0,
+        },
+    },
+    modalContent: {
+        outline: 0
     }
 });
 
 class UserContainer extends Component {
 
-    createData(id, title, expire_date, status) {
-        return {id, title, expire_date, status};
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            advertisement: [],
+            isOpenModel: false,
+        };
+    };
 
     getStatusTag(status) {
         if (status === 1) {
+            return (
+                <Chip
+                    variant="default"
+                    size="small"
+                    label="Pending Activation"
+                    color="green"
+                />
+            )
+        } else if (status === 2) {
             return (
                 <Chip
                     variant="default"
@@ -78,20 +112,35 @@ class UserContainer extends Component {
                 <Chip
                     variant="default"
                     size="small"
-                    label="Pending Activation"
+                    label="Blocked"
                     color="green"
                 />
             )
         }
     }
 
+    componentDidMount() {
+        this.getUserAdvertisementList()
+    }
+
+
+    getUserAdvertisementList() {
+        axios.get(getBaseURL("/user/v1/advertisements"), {
+            headers: {
+                Authorization: getBearerToken()
+            }
+        }).then(res => {
+            let advertisement = res.data.rows.map(x => x);
+            this.setState({
+                advertisement: advertisement,
+            });
+        }).catch(err => {
+
+        });
+    }
+
     render() {
         const {classes} = this.props;
-        const rows = [
-            this.createData(502, "Luxury Hotel Rooms", "2021-01-10 5:00 PM", 1),
-            this.createData(502, "Luxury Hotel Rooms", "2021-01-10 5:00 PM", 2),
-        ];
-
         return (
             <Container>
                 <Grid container spacing={1} className={classes.gridContainer}>
@@ -106,7 +155,7 @@ class UserContainer extends Component {
                         </Typography>
                     </Grid>
                     <Tooltip title="Add Advertisement" aria-label="add">
-                        <Fab color="secondary" className={classes.addButton}>
+                        <Fab href="/dashboard/advertisement/add" color="secondary" className={classes.addButton}>
                             <AddIcon/>
                         </Fab>
                     </Tooltip>
@@ -128,15 +177,16 @@ class UserContainer extends Component {
                     </Grid>
                 </Grid>
                 <List dense={false}>
-                    {rows.map((row) => (
+                    {this.state.advertisement.map((row) => (
                         <ListItem divider={true}>
                             <ListItemAvatar>
-                                <Avatar className={classes.listAvatarLarge} variant="square"/>
+                                <Avatar className={classes.listAvatarLarge} src={getImageURL(row.image, "thumbnail")}
+                                        variant="square"/>
                             </ListItemAvatar>
                             <ListItemText primary={row.title} secondary={
                                 <Grid container spacing={1}>
                                     <Grid item xs={12} sm={4} md={4} lg={4}>{row.expire_date}</Grid>
-                                    <Grid item xs={12} sm={4} md={4} lg={4}>{this.getStatusTag(row.status)}</Grid>
+                                    <Grid item xs={12} sm={4} md={4} lg={4}>{this.getStatusTag(row.status.id)}</Grid>
                                 </Grid>
                             }/>
                             <ListItemSecondaryAction>

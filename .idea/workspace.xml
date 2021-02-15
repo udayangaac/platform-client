@@ -1,23 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fffb4993-5068-40f2-b9de-bb53fa73db47" name="Default Changelist" comment="Added some components and views.">
+    <list default="true" id="fffb4993-5068-40f2-b9de-bb53fa73db47" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/addView/AddView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/api/getBaseURL.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/api/getBearerToken.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/services/api/getResouceURL.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/advertisement/add/AddAdvertisement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/advertisement/configure/ConfigureAdvertisement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/advertisement/edit/EditAdvertisement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/card/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/card/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/defaultLayout/DefaultLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/defaultLayout/DefaultLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/Home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="category: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="city: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="country: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -36,13 +99,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/layouts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/views/advertisement/update" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -56,16 +121,16 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/views/advertisement/update" />
+      <recent name="$PROJECT_DIR$/src/views/advertisement/configure" />
+      <recent name="$PROJECT_DIR$/src/views/advertisement/add" />
+      <recent name="$PROJECT_DIR$/src/services/api" />
+      <recent name="$PROJECT_DIR$/src/components/layouts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/components/layout" />
       <recent name="$PROJECT_DIR$/src/view" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components/layouts" />
-      <recent name="$PROJECT_DIR$/src/components/layouts/adminContainer" />
-      <recent name="$PROJECT_DIR$/src/view" />
-      <recent name="$PROJECT_DIR$/src/service" />
-      <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.Login service testing">
@@ -101,6 +166,28 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="ap_db@localhost: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="ap_db@localhost: root" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@2c4fe1d0" type="9fbbdea:ServiceModel$ServiceNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -108,37 +195,50 @@
     <MESSAGE value="Updated the project" />
     <MESSAGE value="Updated the project." />
     <MESSAGE value="Added some components and views." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some components and views." />
+    <MESSAGE value="Updated the FB button." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the FB button." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1607658701685">
+    <state x="557" y="210" width="868" height="694" key="#Login_service_testing" timestamp="1613277632706">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1607658701685" />
+    <state x="557" y="210" width="868" height="694" key="#Login_service_testing/72.27.1848.1053@72.27.1848.1053" timestamp="1613277632706" />
+    <state x="591" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613289309633">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="591" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1613289309633" />
+    <state x="729" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1613281142959">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="729" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1613281142959" />
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1608921017583">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1608921017583" />
     <state x="247" y="121" width="1478" height="879" key="DiffContextDialog" timestamp="1607424692919">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="247" y="121" width="1478" height="879" key="DiffContextDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607424692919" />
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1606233574127">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1609941476843">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1606233574127" />
-    <state width="528" height="349" key="GridCell.Tab.0.bottom" timestamp="1607431209664">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1609941476843" />
+    <state width="626" height="2" key="GridCell.Tab.0.bottom" timestamp="1613319634014">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="528" height="349" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209664" />
-    <state width="528" height="349" key="GridCell.Tab.0.center" timestamp="1607431209663">
+    <state width="626" height="2" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1613319634014" />
+    <state width="626" height="2" key="GridCell.Tab.0.center" timestamp="1613319634012">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="528" height="349" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209663" />
-    <state width="528" height="349" key="GridCell.Tab.0.left" timestamp="1607431209662">
+    <state width="626" height="2" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1613319634012" />
+    <state width="626" height="2" key="GridCell.Tab.0.left" timestamp="1613319634009">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="528" height="349" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209662" />
-    <state width="528" height="349" key="GridCell.Tab.0.right" timestamp="1607431209663">
+    <state width="626" height="2" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1613319634009" />
+    <state width="626" height="2" key="GridCell.Tab.0.right" timestamp="1613319634013">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state width="528" height="349" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1607431209663" />
+    <state width="626" height="2" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1613319634013" />
     <state width="528" height="349" key="GridCell.Tab.1.bottom" timestamp="1607431209665">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -191,18 +291,22 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="441" y="246" width="599" height="621" key="RollbackChangesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607452493968" />
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1607658710884">
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1608921019945">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1607658710884" />
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1608921019945" />
+    <state x="708" y="235" width="566" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1613318811786">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="708" y="235" width="566" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1613318811786" />
     <state x="223" y="27" width="708" height="853" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607452602961">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="223" y="27" width="708" height="853" maximized="true" key="com.intellij.history.integration.ui.views.FileHistoryDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607452602961" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1607628956811">
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1613399500015">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1607628956811" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1613399500015" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -218,18 +322,13 @@
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/views/home/Home.js</url>
-          <line>24</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js</url>
-          <line>139</line>
+          <line>175</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js</url>
-          <line>56</line>
+          <line>92</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>

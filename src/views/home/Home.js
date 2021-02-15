@@ -1,14 +1,11 @@
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import withStyles from "@material-ui/core/styles/withStyles";
-import Typography from "@material-ui/core/Typography";
 import React from "react";
 import MainContainer from "../../components/layouts/mainContainer";
 import MenuAppBar from "../../components/header/MenuAppBar";
+import Modal from "@material-ui/core/Modal";
+import {makeStyles} from "@material-ui/core/styles";
+import AddView from "../../components/addView/AddView";
 
-const styles = {
+const useStyles = makeStyles((theme) => ({
     cardAction: {
         display: 'block',
         textAlign: 'initial'
@@ -28,7 +25,16 @@ const styles = {
         margin: 12,
 
     },
-};
+    paper: {
+        position: 'absolute',
+        width: 400,
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
+}));
+
 
 function Home(props) {
     return (
@@ -38,5 +44,6 @@ function Home(props) {
         </section>
     );
 }
-export default withStyles(styles)(Home)
+
+export default Home;
 

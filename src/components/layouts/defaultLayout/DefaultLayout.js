@@ -3,6 +3,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import AuthService from "../../../services/auth";
 import Auth from "../../auth/Auth";
 import Logout from "../../auth/Logout"
+import EditAdvertisement from "../../../views/advertisement/edit/EditAdvertisement";
+import AddAdvertisement from "../../../views/advertisement/add/AddAdvertisement";
+import ConfigureAdvertisement from "../../../views/advertisement/configure/ConfigureAdvertisement";
 
 const LoginView = React.lazy(() => import('../../../views/login/Login'));
 const HomeView = React.lazy(() => import('../../../views/home/Home'));
@@ -42,6 +45,10 @@ class DefaultLayout extends Component {
                             <Route path="/logout" exact component={Logout}/>
                             <Auth>
                                 <Route path="/dashboard" exact component={DashboardView}/>
+                                <Route path="/dashboard/advertisement/edit" exact component={EditAdvertisement}/>
+                                <Route path="/dashboard/advertisement/add" exact component={AddAdvertisement}/>
+                                <Route path="/dashboard/advertisement/configure" exact
+                                       component={ConfigureAdvertisement}/>
                             </Auth>
                         </Switch>
                     </Suspense>
@@ -50,4 +57,5 @@ class DefaultLayout extends Component {
         );
     }
 }
+
 export default DefaultLayout
