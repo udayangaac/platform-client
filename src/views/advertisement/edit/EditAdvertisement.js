@@ -2,6 +2,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import React, {Component} from "react";
 import MenuAppBar from "../../../components/header/MenuAppBar";
 import {getCLS} from "web-vitals";
+import AdvertisementDashboardView from "../view/AdvertisementDashboardView";
 
 const styles = (theme) => ({
     gridContainer: {
@@ -43,13 +44,21 @@ const styles = (theme) => ({
 
 class EditAdvertisement extends Component{
 
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
-            <section>
+            <>
                 <MenuAppBar/>
-                <h1>Update Advertisement</h1>
-            </section>
+                <AdvertisementDashboardView
+                    history={this.props.history}
+                    type="user_add_edit"
+                    title="Edit Advertisement"
+                    id={this.props.match.params.id}
+                />
+            </>
         );
 
     }

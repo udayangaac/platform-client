@@ -30,7 +30,7 @@ function Dashboard(props) {
     return (
         <section>
             <MenuAppBar/>
-            <UserContainer/>
+            <UserContainer history={props.history}/>
         </section>
     );
 }

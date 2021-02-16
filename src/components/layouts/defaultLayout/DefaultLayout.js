@@ -45,7 +45,9 @@ class DefaultLayout extends Component {
                             <Route path="/logout" exact component={Logout}/>
                             <Auth>
                                 <Route path="/dashboard" exact component={DashboardView}/>
-                                <Route path="/dashboard/advertisement/edit" exact component={EditAdvertisement}/>
+                                <Route path="/dashboard/advertisement/edit/:id"
+                                       exact
+                                       component={EditAdvertisement}/>
                                 <Route path="/dashboard/advertisement/add" exact component={AddAdvertisement}/>
                                 <Route path="/dashboard/advertisement/configure" exact
                                        component={ConfigureAdvertisement}/>

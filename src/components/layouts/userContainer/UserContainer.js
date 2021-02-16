@@ -13,7 +13,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from "@material-ui/core/TextField";
@@ -21,8 +20,15 @@ import axios from "axios";
 import getBaseURL from "../../../services/api/getBaseURL";
 import getBearerToken from "../../../services/api/getBearerToken";
 import getImageURL from "../../../services/api/getResouceURL";
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Button from '@material-ui/core/Button';
+
 
 const styles = (theme) => ({
+    root: {},
     gridContainer: {},
     demo: {
         backgroundColor: theme.palette.background.paper,
@@ -42,11 +48,7 @@ const styles = (theme) => ({
         height: theme.spacing(10),
         margin: theme.spacing(0, 1, 0),
     },
-    addButton: {
-        position: 'absolute',
-        bottom: theme.spacing(3),
-        right: theme.spacing(3),
-    },
+    addButton: {},
     statusDropdown: {
         minWidth: "200px"
     },
@@ -120,12 +122,12 @@ class UserContainer extends Component {
     }
 
     componentDidMount() {
-        this.getUserAdvertisementList()
+        this.getUserAdvertisementList(0)
     }
 
 
-    getUserAdvertisementList() {
-        axios.get(getBaseURL("/user/v1/advertisements"), {
+    getUserAdvertisementList(pageIndex) {
+        axios.get(getBaseURL("/user/v1/advertisements?page_index=" + pageIndex + "&page_count=10"), {
             headers: {
                 Authorization: getBearerToken()
             }
@@ -139,68 +141,89 @@ class UserContainer extends Component {
         });
     }
 
+    onEditAdvertisement(e, id) {
+        this.props.history.push("/dashboard/advertisement/edit/" + id)
+    }
+
     render() {
         const {classes} = this.props;
         return (
-            <Container>
-                <Grid container spacing={1} className={classes.gridContainer}>
-                    <Typography variant="h5" className={classes.mainTitle}>
-                        Dashboard
-                    </Typography>
-                </Grid>
-                <Grid container spacing={1} className={classes.gridContainer}>
-                    <Grid item xs={12} sm={6} md={6} lg={6}>
-                        <Typography variant="h6" className={classes.subTitle}>
-                            Your Advertisements
-                        </Typography>
+            <div className={classes.root}>
+                <Container>
+                    <Grid container spacing={1} className={classes.gridContainer}>
+                        <Grid item xs={12} sm={6} className={classes.mainTitle}>
+                            <Typography variant="h5">
+                                Dashboard
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} sm={6} className={classes.mainTitle}>
+                            <Tooltip
+                                title="Add Advertisement" aria-label="add">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    href="/dashboard/advertisement/add"
+                                    className={classes.addButton}
+                                    startIcon={<AddIcon/>}
+                                >Create</Button>
+                            </Tooltip>
+                        </Grid>
                     </Grid>
-                    <Tooltip title="Add Advertisement" aria-label="add">
-                        <Fab href="/dashboard/advertisement/add" color="secondary" className={classes.addButton}>
-                            <AddIcon/>
-                        </Fab>
-                    </Tooltip>
-                </Grid>
-                <Grid container spacing={1} className={classes.gridContainer}>
-                    <Grid item xs={12} sm={6} md={6} lg={6}>
-                        <form className={classes.filterForm} noValidate autoComplete="off">
-                            <TextField
-                                id=""
-                                select
-                                label="Select"
-                                defaultValue={10}
-                            >
-                                <MenuItem value={20}>Pending Approval</MenuItem>
-                                <MenuItem value={10}>Active</MenuItem>
-                                <MenuItem value={30}>Expired</MenuItem>
-                            </TextField>
-                        </form>
+                    <Grid spacing={1} className={classes.gridContainer}>
+                        <Grid item xs={12} sm={6} md={6} lg={6}>
+                            <Typography variant="h6" className={classes.subTitle}>
+                                Your Advertisements
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </Grid>
-                <List dense={false}>
-                    {this.state.advertisement.map((row) => (
-                        <ListItem divider={true}>
-                            <ListItemAvatar>
-                                <Avatar className={classes.listAvatarLarge} src={getImageURL(row.image, "thumbnail")}
-                                        variant="square"/>
-                            </ListItemAvatar>
-                            <ListItemText primary={row.title} secondary={
-                                <Grid container spacing={1}>
-                                    <Grid item xs={12} sm={4} md={4} lg={4}>{row.expire_date}</Grid>
-                                    <Grid item xs={12} sm={4} md={4} lg={4}>{this.getStatusTag(row.status.id)}</Grid>
-                                </Grid>
-                            }/>
-                            <ListItemSecondaryAction>
-                                <IconButton aria-label="delete">
-                                    <EditIcon fontSize="small"/>
-                                </IconButton>
-                                <IconButton aria-label="delete">
-                                    <VisibilityIcon fontSize="small"/>
-                                </IconButton>
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                    ))}
-                </List>
-            </Container>
+                    <Grid spacing={1} className={classes.gridContainer}>
+                        <Grid item xs={12} sm={6} md={6} lg={6}>
+                            <form className={classes.filterForm} noValidate autoComplete="off">
+                                <TextField
+                                    id=""
+                                    select
+                                    label="Select"
+                                    defaultValue={10}
+                                >
+                                    <MenuItem value={20}>Pending Approval</MenuItem>
+                                    <MenuItem value={10}>Active</MenuItem>
+                                    <MenuItem value={30}>Expired</MenuItem>
+                                </TextField>
+                            </form>
+                        </Grid>
+                    </Grid>
+                    <List dense={false}>
+                        {this.state.advertisement.map((row) => (
+                            <ListItem divider={true}>
+                                <ListItemAvatar>
+                                    <Avatar className={classes.listAvatarLarge}
+                                            src={getImageURL(row.image, "thumbnail")}
+                                            variant="square"/>
+                                </ListItemAvatar>
+                                <ListItemText primary={row.title} secondary={
+                                    <Grid container spacing={1}>
+                                        <Grid item xs={12} sm={4} md={4} lg={4}>{row.expire_date}</Grid>
+                                        <Grid item xs={12} sm={4} md={4}
+                                              lg={4}>{this.getStatusTag(row.status.id)}</Grid>
+                                    </Grid>
+                                }/>
+                                <ListItemSecondaryAction>
+                                    <IconButton onClick={e=>{this.onEditAdvertisement(e,row.id)}} aria-label="edit">
+                                        <EditIcon fontSize="small"/>
+                                    </IconButton>
+                                    <IconButton aria-label="view">
+                                        <VisibilityIcon fontSize="small"/>
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        ))}
+                    </List>
+                    <BottomNavigation>
+                        <BottomNavigationAction label="previous" icon={<ArrowBackIosIcon/>}/>
+                        <BottomNavigationAction label="next" icon={<ArrowForwardIosIcon/>}/>
+                    </BottomNavigation>
+                </Container>
+            </div>
         )
     }
 }
