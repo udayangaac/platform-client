@@ -15,7 +15,6 @@ import TextField from '@material-ui/core/TextField';
 import SettingsIcon from '@material-ui/icons/Settings';
 
 const styles = (theme) => ({
-    gridContainer: {},
     demo: {
         backgroundColor: theme.palette.background.paper,
     },
