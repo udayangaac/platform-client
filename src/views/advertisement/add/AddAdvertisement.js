@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-import AdvertisementDashboardView from "../view/AdvertisementDashboardView";
+import AdvertisementDashboardView from "../dashboardView/AdvertisementDashboardView";
 import MenuAppBar from "../../../components/header/MenuAppBar";
 
 const styles = (theme) => ({});

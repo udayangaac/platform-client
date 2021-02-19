@@ -33,8 +33,7 @@ const styles = (theme) => ({
 
 });
 
-
-class AddView extends Component {
+class AdvertisementShortView extends Component {
     constructor(props) {
         super(props);
         this.state = {isOpenModel: false};
@@ -77,4 +76,4 @@ class AddView extends Component {
         )
     }
 }
-export default withStyles(styles, {withTheme: true})(AddView);
+export default withStyles(styles, {withTheme: true})(AdvertisementShortView);

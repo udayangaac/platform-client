@@ -85,8 +85,42 @@ const styles = (theme) => ({
     },
     modalContent: {
         outline: 0
+    },
+    imageView:{
+        maxWidth: "100%",
+        height: "auto",
     }
 });
+
+const data = {
+    title:"Rent rooms for prices.",
+    desc:"Marino Beach Colombo has a restaurant, outdoor swimming pool, a fitness center and bar in Colombo. 1.7 mi from Galle Face Beach and 1.1 mi from U.S. Embassy, the property offers a garden and a terrace. The accommodations features a 24-hour front desk, room service and currency exchange for guests.",
+    location:"Colombo",
+    phone:"0112100100",
+    labels:[
+        {
+            name:"Colombo",
+            alignment:"LT",
+            color:"#"
+        },
+        {
+            name:"Colombo",
+            alignment:"RT",
+            color:"#"
+        },
+        {
+            name:"Premium",
+            alignment:"RB",
+            color:"#"
+        }
+    ],
+    images:[
+        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png",
+        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png",
+        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
+    ],
+    price_str:"100"
+};
 
 
 class AdvertisementDashboardView extends Component {
@@ -94,6 +128,7 @@ class AdvertisementDashboardView extends Component {
     /**
      * Default data
      */
+
 
     constructor(props) {
         super(props);
@@ -122,7 +157,7 @@ class AdvertisementDashboardView extends Component {
             desc: "",
             images: [],
             category_id: 0,
-            country_id: 1,
+            country_id: 0,
             city_id: 0,
             phone: "",
             email: "",
@@ -419,6 +454,7 @@ class AdvertisementDashboardView extends Component {
         });
     }
 
+
     closeImageViewModel(e) {
         this.setState({
             show_image_view_model: false,
@@ -497,9 +533,11 @@ class AdvertisementDashboardView extends Component {
                                 select
                                 label="Country"
                                 required
+                                name="country_id"
                                 value={this.state.country_id}
                                 onChange={e => {
                                     this.onCountryChange(e);
+                                    this.onChange(e);
                                 }}
                             >
                                 {this.state.countries.map(function (row, i) {
@@ -652,7 +690,7 @@ class AdvertisementDashboardView extends Component {
                     </form>
                 </Container>
 
-                {/*Model to view photos of the advertisement*/}
+                {/*Model to dashboardView photos of the shortView*/}
                 <Modal
                     className={classes.modal}
                     open={this.state.show_image_view_model}
@@ -662,10 +700,9 @@ class AdvertisementDashboardView extends Component {
                 >
                     <section className={classes.modalContent}>
                         {console.log(this.state.image_url_view_model)}
-                        <img src={this.state.image_url_view_model}/>
+                        <img className={classes.imageView} src={this.state.image_url_view_model}/>
                     </section>
                 </Modal>
-
 
             </section>
         );

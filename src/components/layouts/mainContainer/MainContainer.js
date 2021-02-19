@@ -14,7 +14,8 @@ import Chip from '@material-ui/core/Chip';
 import {blue} from "@material-ui/core/colors";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import AddView from "../../addView/AddView";
+import ShortView from "../../../views/advertisement/shortView/AdvertisementShortView";
+import AdvertisementDetailedView from "../../../views/advertisement/detailedView/AdvertisementDetailedView";
 
 const styles = (theme) => ({
     gridContainer: {
@@ -207,7 +208,7 @@ class MainContainer extends Component {
                         }}
                     >
                         <section className={classes.modalContent} >
-                            <AddView/>
+                            <AdvertisementDetailedView id={1}/>
                         </section>
                     </Modal>
                 </div>

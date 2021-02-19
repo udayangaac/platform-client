@@ -87,6 +87,14 @@ class UserContainer extends Component {
         this.state = {
             advertisement: [],
             isOpenModel: false,
+            statuses: [],
+            status: -1,
+            pagination: {
+                next: -1,
+                previous: -1,
+                current: 0,
+                total_count: 0
+            }
         };
     };
 
@@ -121,13 +129,33 @@ class UserContainer extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getUserAdvertisementList(0)
+    getStatus() {
+        axios.get(getBaseURL("/common/v1/statuses"), {
+            headers: {
+                Authorization: getBearerToken()
+            }
+        }).then(res => {
+            let statuses = res.data.map(x => x);
+            this.setState({
+                statuses: statuses,
+            });
+        }).catch(err => {
+            // Log the error in the console
+            console.log(err)
+        });
     }
 
+    componentDidMount() {
+        this.getUserAdvertisementList(0, this.state.status);
+        this.getStatus();
+    }
 
-    getUserAdvertisementList(pageIndex) {
-        axios.get(getBaseURL("/user/v1/advertisements?page_index=" + pageIndex + "&page_count=10"), {
+    getUserAdvertisementList(pageIndex, status) {
+        let url = getBaseURL("/user/v1/advertisements?page_index=" + pageIndex + "&page_count=5");
+        if (status !== -1) {
+            url = url + "&status=" + status
+        }
+        axios.get(url, {
             headers: {
                 Authorization: getBearerToken()
             }
@@ -135,6 +163,7 @@ class UserContainer extends Component {
             let advertisement = res.data.rows.map(x => x);
             this.setState({
                 advertisement: advertisement,
+                pagination: res.data.pagination,
             });
         }).catch(err => {
 
@@ -143,7 +172,23 @@ class UserContainer extends Component {
 
     onEditAdvertisement(e, id) {
         this.props.history.push("/dashboard/advertisement/edit/" + id)
-    }
+    };
+
+
+    onPrevIconClick(e) {
+        this.getUserAdvertisementList(this.state.pagination.previous, this.state.status)
+    };
+
+    onNextIconClick(e) {
+        this.getUserAdvertisementList(this.state.pagination.next, this.state.status)
+    };
+
+    onStatusFilterChange(e) {
+        this.setState({
+            status: e.target.value
+        });
+        this.getUserAdvertisementList(0, e.target.value)
+    };
 
     render() {
         const {classes} = this.props;
@@ -183,11 +228,14 @@ class UserContainer extends Component {
                                     id=""
                                     select
                                     label="Select"
-                                    defaultValue={10}
+                                    defaultValue={-1}
+                                    onChange={e => {
+                                        this.onStatusFilterChange(e)
+                                    }}
                                 >
-                                    <MenuItem value={20}>Pending Approval</MenuItem>
-                                    <MenuItem value={10}>Active</MenuItem>
-                                    <MenuItem value={30}>Expired</MenuItem>
+                                    {this.state.statuses.map(function (row, i) {
+                                        return (<MenuItem value={row.id}>{row.text}</MenuItem>)
+                                    })}
                                 </TextField>
                             </form>
                         </Grid>
@@ -208,7 +256,9 @@ class UserContainer extends Component {
                                     </Grid>
                                 }/>
                                 <ListItemSecondaryAction>
-                                    <IconButton onClick={e=>{this.onEditAdvertisement(e,row.id)}} aria-label="edit">
+                                    <IconButton onClick={e => {
+                                        this.onEditAdvertisement(e, row.id)
+                                    }} aria-label="edit">
                                         <EditIcon fontSize="small"/>
                                     </IconButton>
                                     <IconButton aria-label="view">
@@ -219,8 +269,24 @@ class UserContainer extends Component {
                         ))}
                     </List>
                     <BottomNavigation>
-                        <BottomNavigationAction label="previous" icon={<ArrowBackIosIcon/>}/>
-                        <BottomNavigationAction label="next" icon={<ArrowForwardIosIcon/>}/>
+                        <BottomNavigationAction
+                            disabled={this.state.pagination.previous === -1}
+                            label="previous"
+                            onClick={e => {
+                                this.onPrevIconClick(e)
+                            }}
+                            icon={<ArrowBackIosIcon/>}/>
+                        <BottomNavigationAction
+                            disabled={true}
+                            icon={<b>{this.state.pagination.current + 1}</b>}
+                        />
+                        <BottomNavigationAction
+                            disabled={this.state.pagination.next === -1}
+                            label="next"
+                            onClick={e => {
+                                this.onNextIconClick(e)
+                            }}
+                            icon={<ArrowForwardIosIcon/>}/>
                     </BottomNavigation>
                 </Container>
             </div>

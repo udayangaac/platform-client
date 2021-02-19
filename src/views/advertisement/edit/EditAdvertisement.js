@@ -2,7 +2,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import React, {Component} from "react";
 import MenuAppBar from "../../../components/header/MenuAppBar";
 import {getCLS} from "web-vitals";
-import AdvertisementDashboardView from "../view/AdvertisementDashboardView";
+import AdvertisementDashboardView from "../dashboardView/AdvertisementDashboardView";
 
 const styles = (theme) => ({
     gridContainer: {

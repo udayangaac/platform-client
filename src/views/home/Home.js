@@ -3,7 +3,7 @@ import MainContainer from "../../components/layouts/mainContainer";
 import MenuAppBar from "../../components/header/MenuAppBar";
 import Modal from "@material-ui/core/Modal";
 import {makeStyles} from "@material-ui/core/styles";
-import AddView from "../../components/addView/AddView";
+import AddView from "../advertisement/shortView/AdvertisementShortView";
 
 const useStyles = makeStyles((theme) => ({
     cardAction: {

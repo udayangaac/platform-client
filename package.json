@@ -20,6 +20,8 @@
     "react-facebook-auth": "^1.4.0",
     "react-facebook-login": "^4.1.1",
     "react-final-form": "^6.5.2",
+    "react-image-lightbox": "^5.1.1",
+    "react-lightbox-component": "^1.2.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
