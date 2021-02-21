@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fffb4993-5068-40f2-b9de-bb53fa73db47" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/advertisement/detailedView/AdvertisementDetailedView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/addView/AddView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/shortView/AdvertisementShortView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/adminContainer/AdminContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/adminContainer/AdminContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layouts/defaultLayout/DefaultLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/defaultLayout/DefaultLayout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/add/AddAdvertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/add/AddAdvertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/edit/EditAdvertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/edit/EditAdvertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/view/AdvertisementDashboardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/dashboardView/AdvertisementDashboardView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/advertisement/dashboardView/AdvertisementDashboardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/dashboardView/AdvertisementDashboardView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/advertisement/detailedView/AdvertisementDetailedView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/detailedView/AdvertisementDetailedView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/advertisement/shortView/AdvertisementShortView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/shortView/AdvertisementShortView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +30,30 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="ap_db@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="ap_db: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="advertisement_audit_log: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -78,17 +102,17 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/views/advertisement" />
-      <recent name="$PROJECT_DIR$/src/components/layout" />
-      <recent name="$PROJECT_DIR$/src/view" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/views/advertisement" />
       <recent name="$PROJECT_DIR$/src/views/advertisement/view" />
       <recent name="$PROJECT_DIR$/src/services/api" />
       <recent name="$PROJECT_DIR$/src/views/advertisement/update" />
       <recent name="$PROJECT_DIR$/src/views/advertisement/configure" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/views/advertisement" />
+      <recent name="$PROJECT_DIR$/src/components/layout" />
+      <recent name="$PROJECT_DIR$/src/view" />
     </key>
   </component>
   <component name="RunManager" selected="Jest.Login service testing">
@@ -157,13 +181,14 @@
     <MESSAGE value="Modify the code with." />
     <MESSAGE value="Modify the code with error handling." />
     <MESSAGE value="Update the user content." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update the user content." />
+    <MESSAGE value="Added the Advertisement Dashboard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the Advertisement Dashboard." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="557" y="210" width="878" height="694" key="#Login_service_testing" timestamp="1613497967656">
+    <state x="557" y="210" width="878" height="694" key="#Login_service_testing" timestamp="1613901423288">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="557" y="210" width="878" height="694" key="#Login_service_testing/72.27.1848.1053@72.27.1848.1053" timestamp="1613497967656" />
+    <state x="557" y="210" width="878" height="694" key="#Login_service_testing/72.27.1848.1053@72.27.1848.1053" timestamp="1613901423288" />
     <state x="591" y="215" width="800" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613289309633">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -172,10 +197,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="729" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1613281142959" />
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1613501142884">
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1613707930939">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1613501142884" />
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1613707930939" />
     <state x="247" y="121" width="1478" height="879" key="DiffContextDialog" timestamp="1607424692919">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -252,10 +277,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="441" y="246" width="599" height="621" key="RollbackChangesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1607452493968" />
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1613501145447">
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1613707935606">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1613501145447" />
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1613707935606" />
     <state x="708" y="235" width="566" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1613318811786">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -268,10 +293,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="644" y="292" width="704" height="522" key="find.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1613544256431" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1613547897218">
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1613893021344">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1613547897218" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1613893021344" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -288,17 +313,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js</url>
-          <line>176</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js</url>
-          <line>93</line>
+          <line>306</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/views/advertisement/add/AddAdvertisement.js</url>
           <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/layouts/adminContainer/AdminContainer.js</url>
+          <line>138</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

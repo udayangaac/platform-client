@@ -5,17 +5,20 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Modal from "@material-ui/core/Modal";
+import PhoneIcon from '@material-ui/icons/Phone';
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import SimpleReactLightbox, {SRLWrapper} from "simple-react-lightbox";
+import getImageURL from "../../../services/api/getResouceURL";
 
 
 const styles = (theme) => ({
     root: {
-        maxWidth: "100%",
+        width: "100%",
         height: "auto",
-        minWidth: "50ch",
-        zIndex: 1,
+        position: 'relative',
+        fontFamily: "'Nunito Sans', sans-serif",
     },
     media: {
         position: 'relative',
@@ -49,11 +52,19 @@ const styles = (theme) => ({
 
     locationTag: {
         margin: theme.spacing(0.5),
-        fontFamily: " 'Open Sans', sans-serif;",
+        fontFamily: "'Nunito Sans', sans-serif",
     },
     title: {
-        fontFamily: " 'Open Sans', sans-serif;",
+        fontFamily: "'Nunito Sans', sans-serif",
+        fontWeight: "bold",
     },
+    bottomContent: {
+        marginTop: "1ch"
+    },
+    bottomLeftContent: {},
+
+    bottomRightContent: {},
+
     modal: {
         display: 'flex',
         alignItems: 'center',
@@ -74,24 +85,52 @@ const styles = (theme) => ({
     modalContent: {
         outline: 0
     },
+    icon: {
+        position: "relative",
+        top: theme.spacing.unit,
+    },
+    content:{
+        fontFamily: "'Nunito Sans', sans-serif",
+    },
+    priceTag: {
+        position: 'absolute',
+        bottom: theme.spacing(0.5),
+        right: theme.spacing(1),
+        fontFamily: "'Nunito Sans', sans-serif",
+        fontWeight: "400",
+    },
+    smallImages: {
+        padding: theme.spacing(0.25),
+    }
 });
 
+const options = {
+    settings: {
+        autoplaySpeed: 3000,
+        boxShadow: 'none',
+        disablePanzoom: false,
+    },
+    thumbnails: {
+        showThumbnails: true,
+        thumbnailsAlignment: 'center',
+        thumbnailsContainerBackgroundColor: 'transparent',
+        thumbnailsContainerPadding: '0',
+        thumbnailsGap: '0 1px',
+        thumbnailsIconColor: '#ffffff',
+        thumbnailsOpacity: 0.4,
+        thumbnailsPosition: 'bottom',
+        thumbnailsSize: ['20px', '20px']
+    },
+    buttons: {
+        iconPadding: "10px",
+    }
+
+
+};
 
 class AdvertisementDetailedView extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            isOpenModel: true,
-            images: [
-                "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
-            ]
-        };
-    }
-
-    closeImageViewModel(e) {
-        this.setState({
-            isOpenModel: false,
-        });
     }
 
     render() {
@@ -99,76 +138,102 @@ class AdvertisementDetailedView extends Component {
         return (
             <>
                 <Card className={classes.root}>
-                    <CardActionArea>
+                    <CardActionArea disabled>
                         <CardMedia
                             className={classes.media}
-                            image="https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
-                            title=""
+                            image={getImageURL(this.props.data.images[0], "thumbnail")}
+                            title={this.props.data.title}
                         >
-                            <div className={classes.locationTopLeftTagContainer}>
-                                <Chip
-                                    className={classes.locationTag}
-                                    size="small"
-                                    color={"primary"}
-                                    label={this.props.id}
-                                />
-                            </div>
-                            <div className={classes.locationTopRightTagContainer}>
-                                <Chip
-                                    className={classes.locationTag}
-                                    size="small"
-                                    color={"primary"}
-                                    label="Batagoda"
-                                    icon={<LocationOnIcon/>}
-                                />
-                            </div>
-                            <div className={classes.locationBottomLeftTagContainer}>
-                                <Chip
-                                    className={classes.locationTag}
-                                    size="small"
-                                    color={"primary"}
-                                    label="Horana"
-                                    icon={<LocationOnIcon/>}
-                                />
-                            </div>
-                            <div className={classes.locationBottomRightTagContainer}>
-                                <Chip
-                                    className={classes.locationTag}
-                                    size="small"
-                                    color={"primary"}
-                                    label="Batagoda"
-                                    icon={<LocationOnIcon/>}
-                                />
-                            </div>
+                            {this.props.data.labels.map((tile, i) => {
+                                if (tile.alignment === "RB") {
+                                    return (<div className={classes.locationBottomRightTagContainer}>
+                                        <Chip
+                                            className={classes.locationTag}
+                                            size="small"
+                                            label={tile.name}
+                                            color="primary"
+                                            style={{
+                                                backgroundColor: tile.color,
+                                            }}
+                                        />
+                                    </div>)
+                                } else if (tile.alignment === "LB") {
+                                    return (<div className={classes.locationBottomLeftTagContainer}>
+                                        <Chip
+                                            className={classes.locationTag}
+                                            size="small"
+                                            color="primary"
+                                            label={tile.name}
+                                            style={{
+                                                backgroundColor: tile.color
+                                            }}
+                                        />
+                                    </div>);
+                                } else if (tile.alignment === "RT") {
+                                    return (<div className={classes.locationTopRightTagContainer}>
+                                        <Chip
+                                            className={classes.locationTag}
+                                            size="small"
+                                            label={tile.name}
+                                            color="primary"
+                                            style={{
+                                                backgroundColor: tile.color
+                                            }}
+                                        />
+                                    </div>);
+                                } else {
+                                    return (<div className={classes.locationTopLeftTagContainer}>
+                                        <Chip
+                                            className={classes.locationTag}
+                                            size="small"
+                                            label={tile.name}
+                                            color="primary"
+                                            icon={<AssignmentIcon/>}
+                                            style={{
+                                                backgroundColor: tile.color
+                                            }}
+                                        />
+                                    </div>);
+                                }
+                            })}
                         </CardMedia>
                     </CardActionArea>
                     <CardContent>
                         <Typography className={classes.title} gutterBottom variant="h5" component="h2">
-                            Advertisement Name
+                            {this.props.data.title}
                         </Typography>
-                        <Typography className={classes.title} variant="body2" color="textSecondary" component="p">
-                            Advertisement description part...
+                        <Typography variant="body" color="textSecondary" component="p">
+                            {this.props.data.desc}
                         </Typography>
-                        <Typography className={classes.title} variant="h5" color="textSecondary">
-                            <b>Rs: 5000.00</b>
+                        <br/>
+                        <SimpleReactLightbox>
+                            <SRLWrapper options={options}>
+                                {this.props.data.images.map((img, i) => {
+                                    return (
+                                        <a href={getImageURL(img, "800x600")}>
+                                            <img width="80px"
+                                                 className={classes.smallImages}
+                                                 src={getImageURL(img, "thumbnail")}
+                                                 alt=""/>
+                                        </a>
+                                    )
+                                })}
+                            </SRLWrapper>
+                        </SimpleReactLightbox>
+                        <br/>
+                        <Typography className={classes.content}>
+                            <LocationOnIcon className={classes.icon}/> {this.props.data.location}
+                        </Typography>
+                        <br/>
+                        <Typography  className={classes.content}>
+                            <PhoneIcon className={classes.icon}/> {this.props.data.phone}
+                        </Typography>
+                        <br/>
+                        <Typography className={classes.priceTag} variant="h4" color="textSecondary">
+                            {this.props.data.currency_code + " " + this.props.data.price_str}
                         </Typography>
                     </CardContent>
-
                 </Card>
-
-                {/*Model to dashboardView photos of the shortView*/}
-                <Modal
-                    className={classes.modal}
-                    open={this.state.isOpenModel}
-                    onClose={e => this.closeImageViewModel(e)}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
-                >
-                    <section className={classes.modalContent}>
-                        <img
-                            src="https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"/>
-                    </section>
-                </Modal>
             </>
         )
     }

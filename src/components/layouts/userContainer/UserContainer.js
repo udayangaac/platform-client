@@ -25,6 +25,13 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Button from '@material-ui/core/Button';
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import AdvertisementDetailedView from "../../../views/advertisement/detailedView/AdvertisementDetailedView";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import DoneAllIcon from "@material-ui/icons/DoneAll";
+import BlockIcon from "@material-ui/icons/Block";
+
 
 
 const styles = (theme) => ({
@@ -87,6 +94,7 @@ class UserContainer extends Component {
         this.state = {
             advertisement: [],
             isOpenModel: false,
+            modelData: {},
             statuses: [],
             status: -1,
             pagination: {
@@ -104,8 +112,12 @@ class UserContainer extends Component {
                 <Chip
                     variant="default"
                     size="small"
+                    color="secondary"
                     label="Pending Activation"
-                    color="green"
+                    style={{
+                        backgroundColor: "#C8C800"
+                    }}
+                    icon={<AssignmentTurnedInIcon/>}
                 />
             )
         } else if (status === 2) {
@@ -114,7 +126,11 @@ class UserContainer extends Component {
                     variant="default"
                     size="small"
                     label="Active"
-                    color="primary"
+                    color="secondary"
+                    style={{
+                        backgroundColor: "#00c800"
+                    }}
+                    icon={<DoneAllIcon/>}
                 />
             )
         } else {
@@ -123,7 +139,11 @@ class UserContainer extends Component {
                     variant="default"
                     size="small"
                     label="Blocked"
-                    color="green"
+                    color="secondary"
+                    icon={<BlockIcon/>}
+                    style={{
+                        backgroundColor: "#c80000"
+                    }}
                 />
             )
         }
@@ -174,6 +194,19 @@ class UserContainer extends Component {
         this.props.history.push("/dashboard/advertisement/edit/" + id)
     };
 
+    onViewAdvertisement(e, id) {
+        let url = getBaseURL("/public/v1/advertisement/"+id);
+        axios.get(url).then(res => {
+            console.log(res.data);
+            this.setState({
+                modelData: res.data,
+                isOpenModel: true,
+            })
+        }).catch(err => {
+
+        });
+    }
+
 
     onPrevIconClick(e) {
         this.getUserAdvertisementList(this.state.pagination.previous, this.state.status)
@@ -189,6 +222,14 @@ class UserContainer extends Component {
         });
         this.getUserAdvertisementList(0, e.target.value)
     };
+
+
+    handleModelClose(e) {
+        this.setState({
+            isOpenModel: false
+        })
+    };
+
 
     render() {
         const {classes} = this.props;
@@ -261,7 +302,9 @@ class UserContainer extends Component {
                                     }} aria-label="edit">
                                         <EditIcon fontSize="small"/>
                                     </IconButton>
-                                    <IconButton aria-label="view">
+                                    <IconButton onClick={e =>{
+                                        this.onViewAdvertisement(e, row.id)
+                                    }}>
                                         <VisibilityIcon fontSize="small"/>
                                     </IconButton>
                                 </ListItemSecondaryAction>
@@ -289,6 +332,20 @@ class UserContainer extends Component {
                             icon={<ArrowForwardIosIcon/>}/>
                     </BottomNavigation>
                 </Container>
+                <Modal
+                    className={classes.modal}
+                    open={this.state.isOpenModel}
+                    onClose={event => this.handleModelClose(event)}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                        timeout: 500,
+                    }}
+                >
+                    <section className={classes.modalContent}>
+                        <AdvertisementDetailedView data={this.state.modelData}/>
+                    </section>
+                </Modal>
             </div>
         )
     }

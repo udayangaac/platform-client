@@ -6,31 +6,60 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import {makeStyles} from "@material-ui/core/styles";
 import withStyles from "@material-ui/core/styles/withStyles";
+import getImageURL from "../../../services/api/getResouceURL";
 
 
 const styles = (theme) => ({
     root: {
+        fontFamily: "'Nunito Sans', sans-serif",
         position: 'relative',
     },
     media: {
         minHeight: 200,
-        width:"100%",
+        width: "100%",
     },
     locationTagContainer: {
+        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         top: theme.spacing(0.5),
         left: theme.spacing(0.5),
     },
     locationTag: {
         margin: theme.spacing(0.5),
-        fontFamily: " 'Open Sans', sans-serif;",
+        fontFamily: "'Nunito Sans', sans-serif",
     },
     title: {
-        fontFamily: " 'Open Sans', sans-serif;",
-    }
+        fontFamily: "'Nunito Sans', sans-serif",
+        fontWeight: "bold",
+    },
+    locationTopRightTagContainer: {
+        fontFamily: "'Nunito Sans', sans-serif",
+        position: 'absolute',
+        top: theme.spacing(0.5),
+        right: theme.spacing(0.5),
+    },
 
+    locationTopLeftTagContainer: {
+        fontFamily: "'Nunito Sans', sans-serif",
+        position: 'absolute',
+        top: theme.spacing(0.5),
+        left: theme.spacing(0.5),
+    },
+
+    locationBottomRightTagContainer: {
+        fontFamily: "'Nunito Sans', sans-serif",
+        position: 'absolute',
+        bottom: theme.spacing(0.5),
+        right: theme.spacing(0.5),
+    },
+
+    locationBottomLeftTagContainer: {
+        fontFamily: "'Nunito Sans', sans-serif",
+        position: 'absolute',
+        bottom: theme.spacing(0.5),
+        left: theme.spacing(0.5),
+    },
 });
 
 class AdvertisementShortView extends Component {
@@ -47,33 +76,52 @@ class AdvertisementShortView extends Component {
                     <CardActionArea>
                         <CardMedia
                             className={classes.media}
-                            image="https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
-                            title=""
+                            image={getImageURL(this.props.data.images[0], "thumbnail")}
                         />
                         <CardContent>
-                            <Typography  className={classes.title} gutterBottom variant="h5" component="h2">
-                                Advertisement Name
+                            <Typography className={classes.title} gutterBottom variant="h5" component="h2">
+                                {this.props.data.title}
                             </Typography>
                             <Typography className={classes.title} variant="body2" color="textSecondary" component="p">
-                                Advertisement description part...
+                                {this.props.data.desc_part}
                             </Typography>
                             <Typography className={classes.title} variant="h5" color="textSecondary">
-                                <b>Rs: 5000.00</b>
+                                <b>{this.props.data.price_str}</b>
                             </Typography>
                         </CardContent>
-                        <div className={classes.locationTagContainer}>
-                            <Chip
-                                className={classes.locationTag}
-                                size="small"
-                                color={"primary"}
-                                label="Horana"
-                                icon={<LocationOnIcon/>}
-                            />
-                        </div>
+                        {this.props.data.labels.map((tile, i) => {
+                            if (tile.alignment === "RT") {
+                                return (<div className={classes.locationTopRightTagContainer}>
+                                    <Chip
+                                        className={classes.locationTag}
+                                        size="small"
+                                        label={tile.name}
+                                        color="primary"
+                                        style={{
+                                            backgroundColor: tile.color
+                                        }}
+                                    />
+                                </div>);
+                            } else {
+                                return (<div className={classes.locationTopLeftTagContainer}>
+                                    <Chip
+                                        className={classes.locationTag}
+                                        size="small"
+                                        label={tile.name}
+                                        color="primary"
+                                        icon={<LocationOnIcon/>}
+                                        style={{
+                                            backgroundColor: tile.color
+                                        }}
+                                    />
+                                </div>);
+                            }
+                        })}
                     </CardActionArea>
                 </Card>
             </>
         )
     }
 }
+
 export default withStyles(styles, {withTheme: true})(AdvertisementShortView);

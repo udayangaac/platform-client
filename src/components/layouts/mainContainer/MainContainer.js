@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Container, Grid} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
-import SimpleCard from "../../card/Card";
 import Typography from '@material-ui/core/Typography';
 import ChipInput from 'material-ui-chip-input'
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,22 +13,30 @@ import Chip from '@material-ui/core/Chip';
 import {blue} from "@material-ui/core/colors";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
-import ShortView from "../../../views/advertisement/shortView/AdvertisementShortView";
 import AdvertisementDetailedView from "../../../views/advertisement/detailedView/AdvertisementDetailedView";
+import axios from "axios";
+import getBaseURL from "../../../services/api/getBaseURL";
+import AdvertisementShortView from "../../../views/advertisement/shortView/AdvertisementShortView";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 
 const styles = (theme) => ({
     gridContainer: {
         paddingTop: '10px'
     },
     formControl: {
+        fontFamily: "'Nunito Sans', sans-serif",
         margin: theme.spacing(0.5),
         minWidth: 100,
     },
     searchFormControl: {
+        fontFamily: "'Nunito Sans', sans-serif",
         width: "100%",
     },
     title: {
-        fontFamily: " 'Montserrat', sans-serif",
+        fontFamily: "'Nunito Sans', sans-serif",
     },
     modal: {
         display: 'flex',
@@ -47,26 +54,71 @@ const styles = (theme) => ({
             outline: "none",
             border: 0,
         },
+        width:"100%"
     },
-    modalContent:{
+    modalContent: {
+        fontFamily: "'Nunito Sans', sans-serif",
         outline: 0
+    },
+    font: {
+        fontFamily: "'Nunito Sans', sans-serif",
     }
 });
-
 
 class MainContainer extends Component {
     constructor(props) {
         super(props);
-        this.state = {isOpenModel: false};
+        this.state = {
+            isOpenModel: false,
+            modelData: {},
+            // Drop downs
+            statuses: [],
+            categories: [],
+            countries: [],
+            cities: [
+                {
+                    ID: 0,
+                    name: "Select your country",
+                }
+            ],
+
+
+            country_id: 1,
+            category_id: 0,
+            city_id: 0,
+            search_terms_tmp: [],
+
+            // Search related status
+
+
+            search_terms: [],
+            category_ids: [],
+            country_id_search: 0,
+            city_ids: [],
+
+            list: [],
+            pagination: {},
+        };
     }
 
+
+    // Chip input related functions
+    // Add chip
     handleAddChip(chip) {
-
     }
 
+    // Chip change
+    handleChange(chips) {
+        this.setState({
+            search_terms_tmp: chips,
+        })
+    }
+
+    // Delete chip
     handleDeleteChip(chip, index) {
-
+        console.log(chip, index)
     }
+
 
     handleModelOpen(e) {
         this.setState({
@@ -79,6 +131,167 @@ class MainContainer extends Component {
             isOpenModel: false
         })
     };
+
+    componentDidMount() {
+        this.getCountries();
+        this.getCategories();
+        this.getCities(this.state.country_id);
+        this.getAdvertisementList(0)
+    }
+
+    /**
+     * Call common api to get Status of the platform
+     */
+    getCategories() {
+        axios.get(getBaseURL("/public/v1/categories")).then(res => {
+            let categories = res.data.map(x => x);
+            this.setState({
+                categories: categories,
+            });
+        }).catch(err => {
+            // Log the error in the console
+            console.log(err)
+        });
+    }
+
+    /**
+     * Get countries
+     */
+    getCountries() {
+        axios.get(getBaseURL("/public/v1/countries")).then(res => {
+            let countries = res.data.map(x => x);
+            this.setState({
+                countries: countries,
+            });
+        }).catch(err => {
+            console.log(err)
+        });
+    }
+
+    /**
+     * Get cities
+     */
+    getCities(countryId) {
+        axios.get(getBaseURL("/public/v1/cities")).then(res => {
+            let cities = res.data.map(x => x);
+            this.setState({
+                cities: cities,
+            });
+        }).catch(err => {
+            // Log the error in the console
+            console.log(err)
+        });
+    }
+
+    /**
+     * This function is used start fetch cities
+     * @param e
+     */
+    onCountryChange(e) {
+        this.getCities(this.state.country_id)
+    }
+
+
+    onChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    };
+
+    onSearchButtonClick(e) {
+        console.log(this.state);
+        if (this.state.city_id !== 0) {
+            this.setState({
+                city_ids: [this.state.city_id],
+            });
+        }
+
+        if (this.state.category_id !== 0) {
+            this.setState({
+                category_ids: [this.state.category_id],
+            });
+        }
+
+        this.setState({
+            country_id_search: this.state.country_id,
+            search_terms: this.state.search_terms_tmp,
+        });
+
+        console.log({
+            search_terms: this.state.search_terms,
+            category_ids: this.state.category_ids,
+            country_id: this.state.country_id_search,
+            city_ids: this.state.city_ids,
+        });
+
+        this.getAdvertisementList(0)
+    }
+
+    onClearFilterButtonClick(e) {
+        console.log(this.state);
+        this.setState({
+            search_terms: [],
+            category_ids: [],
+            country_id_search: 0,
+            city_ids: [],
+        });
+
+        console.log({
+            search_terms: this.state.search_terms,
+            category_ids: this.state.category_ids,
+            country_id: this.state.country_id_search,
+            city_ids: this.state.city_ids,
+        });
+        this.getAdvertisementList(0)
+    }
+
+
+    getAdvertisementList(pageIndex) {
+        let url = getBaseURL("/public/v1/search?page_index=" + pageIndex + "&page_count=5");
+        axios.post(url, {
+            search_terms: this.state.search_terms,
+            category_ids: this.state.category_ids,
+            country_id: this.state.country_id_search,
+            city_ids: this.state.city_ids,
+        }, {
+            headers: {}
+        }).then(res => {
+            let list = res.data.list.map(x => x);
+            this.setState({
+                list: list,
+                pagination: res.data.pagination,
+            });
+        }).catch(err => {
+            console.log(err)
+        });
+    }
+
+    onPrevIconClick(e) {
+        this.getAdvertisementList(this.state.pagination.previous)
+    };
+
+    onNextIconClick(e) {
+        this.getAdvertisementList(this.state.pagination.next)
+    };
+
+
+    onViewAdvertisement(id) {
+        let url = getBaseURL("/public/v1/advertisement/" + id);
+        axios.get(url).then(res => {
+            console.log(res.data);
+            this.setState({
+                modelData: res.data,
+                isOpenModel: true,
+            })
+        }).catch(err => {
+        });
+    }
+
+    onItemClick(id) {
+        console.log("Clicked", id);
+        this.onViewAdvertisement(id)
+    }
+
 
     render() {
         const {classes} = this.props;
@@ -94,10 +307,12 @@ class MainContainer extends Component {
                         <Grid item xs={12} sm={4} md={4} lg={4}>
                             <FormControl className={classes.searchFormControl}>
                                 <ChipInput
+                                    className={classes.font}
                                     color={"secondary"}
                                     variant='outlined'
                                     label="Search Terms"
                                     onAdd={(chip) => this.handleAddChip(chip)}
+                                    onChange={(chips) => this.handleChange(chips)}
                                     onDelete={(chip, index) => this.handleDeleteChip(chip, index)}
                                     chipRenderer={({value, text, isFocused, isDisabled, isReadOnly, handleClick, handleDelete, className}, key) => (
                                         <Chip
@@ -106,7 +321,8 @@ class MainContainer extends Component {
                                             className={className}
                                             style={{
                                                 pointerEvents: isDisabled || isReadOnly ? 'none' : undefined,
-                                                backgroundColor: isFocused ? blue : undefined
+                                                backgroundColor: isFocused ? blue : undefined,
+                                                fontFamily: "'Nunito Sans', sans-serif",
                                             }}
                                             size="small"
                                             onClick={handleClick}
@@ -120,43 +336,67 @@ class MainContainer extends Component {
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <FormGroup row>
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel id="categoryLabelId">Category</InputLabel>
+                                    <InputLabel className={classes.font} id="categoryLabelId">Category</InputLabel>
                                     <Select
+                                        className={classes.font}
+                                        name="category_id"
+                                        onChange={e => {
+                                            this.onChange(e)
+                                        }}
                                         labelId="categoryLabelId"
-                                        id="categoryId"
                                         defaultValue={0}>
-                                        <MenuItem value={0}>All</MenuItem>
+                                        {this.state.categories.map(function (row, i) {
+                                            if (row.id !== -1) {
+                                                return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                            }
+                                        })}
                                     </Select>
                                 </FormControl>
                                 {/*country is disable for the first deployment*/}
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel id="countryLabelId">County</InputLabel>
+                                    <InputLabel id="countryLabelId" className={classes.font}>County</InputLabel>
                                     <Select
+                                        className={classes.font}
+                                        name="country_id"
                                         labelId="countryLabelId"
                                         id="countryId"
-                                        defaultValue={1}>
-                                        <MenuItem value={1}>Sri Lanka</MenuItem>
+                                        onChange={e => {
+                                            this.onChange(e);
+                                            this.onCountryChange(e);
+                                        }}
+                                        defaultValue={0}>
+                                        {this.state.countries.map(function (row, i) {
+                                            return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                        })}
                                     </Select>
                                 </FormControl>
 
                                 <FormControl className={classes.formControl}>
-                                    <InputLabel id="cityLabelId">City</InputLabel>
+                                    <InputLabel className={classes.font} id="cityLabelId">City</InputLabel>
                                     <Select
+                                        className={classes.font}
                                         labelId="cityLabelId"
                                         id="cityId"
+                                        name="city_id"
+                                        onChange={e => {
+                                            this.onChange(e)
+                                        }}
                                         defaultValue={0}>
-                                        <MenuItem value={0}>All</MenuItem>
-                                        <MenuItem value={1}>Horana</MenuItem>
+                                        {this.state.cities.map(function (row, i) {
+                                            return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                        })}
                                     </Select>
                                 </FormControl>
                             </FormGroup>
                         </Grid>
                         <Grid item xs={12} sm={2} md={2} lg={2}>
-                            <FormControl className={classes.formControl}>
+                            <FormControl  className={classes.formControl}>
                                 <Button
+                                    className={classes.font}
                                     variant="contained"
                                     color="primary"
                                     size="small"
+                                    onClick={e => this.onSearchButtonClick(e)}
                                 >Search</Button>
                             </FormControl>
                         </Grid>
@@ -165,38 +405,49 @@ class MainContainer extends Component {
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <FormControl className={classes.formControl}>
                                 <Button
+                                    className={classes.font}
                                     variant={"text"}
                                     color="primary"
                                     size="small"
+                                    onClick={e => this.onClearFilterButtonClick(e)}
                                 >Reset Filters</Button>
                             </FormControl>
                         </Grid>
                     </Grid>
                     <Grid container spacing={1} className={classes.gridContainer}>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
-                        <Grid item xs={12} sm={6} md={4} lg={3}>
-                            <SimpleCard/>
-                        </Grid>
+
+                        {this.state.list.map((d, i) => {
+                            return (
+                                <Grid item xs={12} sm={6} md={4} lg={3} onClick={e => {
+                                    this.onItemClick(d.id)
+                                }}>
+                                    <AdvertisementShortView data={d}/>
+                                </Grid>
+                            )
+                        })}
                     </Grid>
+                    <br/>
+                    <BottomNavigation>
+                        <BottomNavigationAction
+                            disabled={this.state.pagination.previous === -1}
+                            label="previous"
+                            onClick={e => {
+                                this.onPrevIconClick(e)
+                            }}
+                            icon={<ArrowBackIosIcon/>}/>
+                        <BottomNavigationAction
+                            disabled={true}
+                        />
+                        <BottomNavigationAction
+                            disabled={this.state.pagination.next === -1}
+                            label="next"
+                            onClick={e => {
+                                this.onNextIconClick(e)
+                            }}
+                            icon={<ArrowForwardIosIcon/>}/>
+                    </BottomNavigation>
                 </Container>
                 <div>
-                    <button type="button" onClick={event => this.handleModelOpen(event)}>
-                        react-transition-group
-                    </button>
                     <Modal
                         className={classes.modal}
                         open={this.state.isOpenModel}
@@ -207,8 +458,8 @@ class MainContainer extends Component {
                             timeout: 500,
                         }}
                     >
-                        <section className={classes.modalContent} >
-                            <AdvertisementDetailedView id={1}/>
+                        <section className={classes.modalContent}>
+                            <AdvertisementDetailedView data={this.state.modelData}/>
                         </section>
                     </Modal>
                 </div>

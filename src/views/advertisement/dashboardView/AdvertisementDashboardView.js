@@ -21,6 +21,7 @@ import {green} from '@material-ui/core/colors';
 import {Alert, AlertTitle} from '@material-ui/lab';
 import Modal from '@material-ui/core/Modal';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 
 const styles = (theme) => ({
     gridContainer: {
@@ -502,6 +503,8 @@ class AdvertisementDashboardView extends Component {
                                 type="text"
                                 name="desc"
                                 required
+                                multiline
+                                rows={5}
                                 value={this.state.desc}
                                 onChange={e => {
                                     this.onChange(e)
@@ -521,7 +524,7 @@ class AdvertisementDashboardView extends Component {
                                 value={this.state.category_id}
                             >
                                 {this.state.categories.map(function (row, i) {
-                                    if (row.id !== -1) {
+                                    if (row.ID !== 0) {
                                         return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
@@ -541,7 +544,9 @@ class AdvertisementDashboardView extends Component {
                                 }}
                             >
                                 {this.state.countries.map(function (row, i) {
-                                    return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
+                                    if (row.ID !== 0) {
+                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
+                                    }
                                 })}
                             </TextField>
                         </Grid>
@@ -556,10 +561,9 @@ class AdvertisementDashboardView extends Component {
                                 onChange={e => {
                                     this.onChange(e)
                                 }}
-                                defaultValue={0}
                             >
                                 {this.state.cities.map(function (row, i) {
-                                    if (row.id !== -1) {
+                                    if (row.ID !== 0) {
                                         return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}

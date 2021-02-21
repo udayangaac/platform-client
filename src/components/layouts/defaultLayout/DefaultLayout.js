@@ -6,19 +6,17 @@ import Logout from "../../auth/Logout"
 import EditAdvertisement from "../../../views/advertisement/edit/EditAdvertisement";
 import AddAdvertisement from "../../../views/advertisement/add/AddAdvertisement";
 import ConfigureAdvertisement from "../../../views/advertisement/configure/ConfigureAdvertisement";
+import Dashboard from "../../../views/dashboard";
 
 const LoginView = React.lazy(() => import('../../../views/login/Login'));
 const HomeView = React.lazy(() => import('../../../views/home/Home'));
-const DashboardView = React.lazy(() => import('../../../views/dashboard/Dashboard'));
+
 
 
 class DefaultLayout extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            auth: null
-        }
     }
 
     componentDidMount() {
@@ -28,6 +26,7 @@ class DefaultLayout extends Component {
             auth: auth
         })
     }
+
 
 
     loading() {
@@ -44,10 +43,8 @@ class DefaultLayout extends Component {
                             <Route path="/login" exact component={LoginView}/>
                             <Route path="/logout" exact component={Logout}/>
                             <Auth>
-                                <Route path="/dashboard" exact component={DashboardView}/>
-                                <Route path="/dashboard/advertisement/edit/:id"
-                                       exact
-                                       component={EditAdvertisement}/>
+                                <Route path="/dashboard" exact component={Dashboard}/>
+                                <Route path="/dashboard/advertisement/edit/:id" exact component={EditAdvertisement}/>
                                 <Route path="/dashboard/advertisement/add" exact component={AddAdvertisement}/>
                                 <Route path="/dashboard/advertisement/configure" exact
                                        component={ConfigureAdvertisement}/>
