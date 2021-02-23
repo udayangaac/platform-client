@@ -16,6 +16,7 @@ import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
+import Footer from "../../components/header/Footer";
 
 const styles = (theme) => ({
     paper: {
@@ -44,25 +45,11 @@ const styles = (theme) => ({
         color: 'white',
         minHeight: 30,
         padding: '0 30px',
-        width:"100%",
-        fontSize:15,
+        width: "100%",
+        fontSize: 15,
+        fontFamily: "'Nunito Sans', sans-serif",
     }
 });
-
-
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 
 
 class Login extends Component {
@@ -90,14 +77,23 @@ class Login extends Component {
         return (
             <section>
                 <MenuAppBar/>
-                <Container component="main" maxWidth="xs">
+                <Container
+                    style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
+                    }}
+                    component="main" maxWidth="xs">
                     <CssBaseline/>
                     <div className={classes.paper}>
                         <Avatar className={classes.avatar}>
                             <LockOutlinedIcon/>
                         </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Get into the platform
+                        <Typography
+                            style={{
+                                fontFamily: "'Nunito Sans', sans-serif",
+                            }}
+                            component="h1"
+                            variant="h5">
+                            <b>Get into the platform</b>
                         </Typography>
                         <form className={classes.form} noValidate>
                             <FacebookLogin
@@ -112,16 +108,18 @@ class Login extends Component {
                                 callback={this.responseFacebook}/>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#" variant="body2">
+                                    <Link
+                                        style={{
+                                            fontFamily: "'Nunito Sans', sans-serif",
+                                        }}
+                                        href="#" variant="body2">
                                         You dont have facebook account ?
                                     </Link>
                                 </Grid>
                             </Grid>
                         </form>
                     </div>
-                    <Box mt={8}>
-                        <Copyright/>
-                    </Box>
+                    <Footer/>
                 </Container>
             </section>
 

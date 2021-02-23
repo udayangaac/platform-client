@@ -21,12 +21,19 @@ import {green} from '@material-ui/core/colors';
 import {Alert, AlertTitle} from '@material-ui/lab';
 import Modal from '@material-ui/core/Modal';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import {Editor} from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import safeJson from "js-string-escape";
+import unEscape from "unescape-js";
 
 const styles = (theme) => ({
     gridContainer: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
+        '& .MuiTextField-root': {
+            width: '50ch',
+        },
     },
     demo: {
         backgroundColor: theme.palette.background.paper,
@@ -35,11 +42,7 @@ const styles = (theme) => ({
         margin: theme.spacing(1, 0, 1),
     },
     images: {margin: theme.spacing(0, 1, 0),},
-    root: {
-        '& .MuiTextField-root': {
-            width: '50ch',
-        },
-    },
+    root: {},
     input: {
         display: 'none',
     },
@@ -87,41 +90,14 @@ const styles = (theme) => ({
     modalContent: {
         outline: 0
     },
-    imageView:{
+    imageView: {
         maxWidth: "100%",
         height: "auto",
+    },
+    descEditor: {
+        lineHeight:"1px",
     }
 });
-
-const data = {
-    title:"Rent rooms for prices.",
-    desc:"Marino Beach Colombo has a restaurant, outdoor swimming pool, a fitness center and bar in Colombo. 1.7 mi from Galle Face Beach and 1.1 mi from U.S. Embassy, the property offers a garden and a terrace. The accommodations features a 24-hour front desk, room service and currency exchange for guests.",
-    location:"Colombo",
-    phone:"0112100100",
-    labels:[
-        {
-            name:"Colombo",
-            alignment:"LT",
-            color:"#"
-        },
-        {
-            name:"Colombo",
-            alignment:"RT",
-            color:"#"
-        },
-        {
-            name:"Premium",
-            alignment:"RB",
-            color:"#"
-        }
-    ],
-    images:[
-        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png",
-        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png",
-        "https://extranet.horisonhotels.com/assets/images/rooms/1e1e2c7071968cd6892f1e3794fa01ec.png"
-    ],
-    price_str:"100"
-};
 
 
 class AdvertisementDashboardView extends Component {
@@ -162,8 +138,11 @@ class AdvertisementDashboardView extends Component {
             city_id: 0,
             phone: "",
             email: "",
-            price: 0
+            price: 0,
+
+            editorState: this.stringToDraftState('{"blocks":[{"key":"492qc","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}')
         };
+
 
         if (this.props.type === "user_add_edit") {
             this.getAdvertisement(this.props.id)
@@ -280,7 +259,7 @@ class AdvertisementDashboardView extends Component {
 
     handleUploadClick(e) {
         console.log(this.state.images.length);
-        if (this.state.images.length > 1) {
+        if (this.state.images.length > 4) {
             this.setAlert(
                 true,
                 "Error",
@@ -440,6 +419,8 @@ class AdvertisementDashboardView extends Component {
                 phone: value.data.phone,
                 email: value.data.email,
                 price: Number(value.data.price),
+                // Sample
+                editorState: this.stringToDraftState(unEscape(value.data.desc))
             });
             console.log(this.state)
         }).catch(reason => {
@@ -463,6 +444,18 @@ class AdvertisementDashboardView extends Component {
         });
     }
 
+    stringToDraftState(text) {
+        try {
+            const json = JSON.parse(text);
+            const raw = convertFromRaw(json);
+            const state = EditorState.createWithContent(raw);
+            console.log(state);
+            return state;
+        } catch (e) {
+            return EditorState.createEmpty();
+        }
+    }
+
     render() {
         const {classes} = this.props;
         return (
@@ -472,21 +465,31 @@ class AdvertisementDashboardView extends Component {
                     <form onSubmit={e => this.onSubmit(e)}>
 
                         <Grid container className={classes.gridContainer}>
-                            <Typography variant="h4" className={classes.mainTitle}>
+                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h4"
+                                        className={classes.mainTitle}>
                                 {this.props.title}
                             </Typography>
                         </Grid>
 
-                        {this.state.is_alert_visible && (<Alert className={classes.topAlert} severity="error">
-                            <AlertTitle>{this.state.alert_title}</AlertTitle>
-                            {this.state.alert_message}
-                        </Alert>)}
+                        {this.state.is_alert_visible && (
+                            <Alert style={{fontFamily: "'Nunito Sans', sans-serif"}} className={classes.topAlert}
+                                   severity="error">
+                                <AlertTitle
+                                    style={{fontFamily: "'Nunito Sans', sans-serif"}}>{this.state.alert_title}</AlertTitle>
+                                {this.state.alert_message}
+                            </Alert>)}
 
 
+                        <Grid container className={classes.gridContainer}>
+                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                                        className={classes.mainTitle}>
+                                Title
+                            </Typography>
+                        </Grid>
                         <Grid container spacing={1} className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 name="title"
-                                label="Title"
                                 type="text"
                                 required
                                 value={this.state.title}
@@ -497,23 +500,57 @@ class AdvertisementDashboardView extends Component {
                         </Grid>
 
 
+                        {/*<Grid container className={classes.gridContainer}>*/}
+                        {/*    <TextField*/}
+                        {/*        style={{fontFamily: "'Nunito Sans', sans-serif"}}*/}
+                        {/*        label="Description"*/}
+                        {/*        type="text"*/}
+                        {/*        name="desc"*/}
+                        {/*        required*/}
+                        {/*        multiline*/}
+                        {/*        rows={5}*/}
+                        {/*        value={this.state.desc}*/}
+                        {/*        onChange={e => {*/}
+                        {/*            this.onChange(e)*/}
+                        {/*        }}*/}
+                        {/*    />*/}
+                        {/*</Grid>*/}
+
+
                         <Grid container className={classes.gridContainer}>
-                            <TextField
-                                label="Description"
-                                type="text"
-                                name="desc"
-                                required
-                                multiline
-                                rows={5}
-                                value={this.state.desc}
-                                onChange={e => {
-                                    this.onChange(e)
+                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                                        className={classes.mainTitle}>
+                                Description
+                            </Typography>
+                        </Grid>
+                        <div style={{
+                            border: "1px solid black",
+                            minHeight: "300px",
+                        }}>
+                            <Editor
+                                editorState={this.state.editorState}
+                                stripPastedStyles={true}
+                                editorClassName={classes.descEditor}
+                                    onEditorStateChange={(text) => {
+                                this.setState({
+                                    editorState: text,
+                                    desc: JSON.stringify(convertToRaw(text.getCurrentContent()))
+                                });
+
+                            }}
+                                toolbar={{
+                                    options: ["inline", "list", "link", "colorPicker"],
+                                    emoji: {
+                                        className: "demo-option-custom",
+                                        popupClassName: "demo-popup-custom"
+                                    }
                                 }}
                             />
-                        </Grid>
+                        </div>
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="Category"
                                 name="category_id"
@@ -525,7 +562,8 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.categories.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
+                                                          value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -533,6 +571,7 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="Country"
                                 required
@@ -545,7 +584,8 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.countries.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
+                                                          value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -553,6 +593,7 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="City"
                                 name="city_id"
@@ -564,7 +605,8 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.cities.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
+                                                          value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -572,7 +614,8 @@ class AdvertisementDashboardView extends Component {
 
 
                         <Grid container className={classes.gridContainer}>
-                            <Typography variant="h6" className={classes.mainTitle}>
+                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                                        className={classes.mainTitle}>
                                 Image Preview
                             </Typography>
                         </Grid>
@@ -631,6 +674,7 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 label="Phone"
                                 type="phone"
                                 name="phone"
@@ -644,6 +688,7 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 label="E-mail"
                                 type="email"
                                 name="email"
@@ -656,6 +701,7 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
+                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 label="Price"
                                 type="price"
                                 name="price"
@@ -670,22 +716,26 @@ class AdvertisementDashboardView extends Component {
                         <Grid container className={classes.gridContainer}>
 
                             {/*Submit advertisement for approval process*/}
-                            {(this.props.type === 'user_add') && <Button type="submit" variant="contained">
+                            {(this.props.type === 'user_add') &&
+                            <Button style={{fontFamily: "'Nunito Sans', sans-serif"}} type="submit" variant="contained">
                                 Submit
                             </Button>}
 
                             {/*Button to re submit the changes to the platform*/}
                             {/*When we resubmitting remove the */}
-                            {(this.props.type === 'user_add_edit') && <Button type="submit" variant="contained">
+                            {(this.props.type === 'user_add_edit') &&
+                            <Button style={{fontFamily: "'Nunito Sans', sans-serif"}} type="submit" variant="contained">
                                 Re Submit
                             </Button>}
 
                             {/* Button for admin usage */}
                             {(this.props.type === 'admin') && <>
-                                <Button type="submit" variant="contained">
+                                <Button type="submit" style={{fontFamily: "'Nunito Sans', sans-serif"}}
+                                        variant="contained">
                                     Approve
                                 </Button>
-                                <Button type="submit" variant="contained">
+                                <Button type="submit" style={{fontFamily: "'Nunito Sans', sans-serif"}}
+                                        variant="contained">
                                     Block
                                 </Button>
                             </>}

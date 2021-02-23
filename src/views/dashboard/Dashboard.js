@@ -4,6 +4,7 @@ import MenuAppBar from "../../components/header/MenuAppBar";
 import UserContainer from "../../components/layouts/userContainer";
 import AdminContainer from "../../components/layouts/adminContainer";
 import AuthService from "../../services/auth";
+import Footer from "../../components/header/Footer"
 
 const styles = {
     cardAction: {
@@ -43,6 +44,7 @@ function Dashboard(props) {
             <section>
                 <MenuAppBar/>
                 <UserContainer history={props.history}/>
+                <Footer/>
             </section>
         );
     }

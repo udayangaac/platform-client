@@ -33,7 +33,6 @@ import DoneAllIcon from "@material-ui/icons/DoneAll";
 import BlockIcon from "@material-ui/icons/Block";
 
 
-
 const styles = (theme) => ({
     root: {},
     gridContainer: {},
@@ -66,8 +65,11 @@ const styles = (theme) => ({
         }
     },
     modal: {
+        position:'absolute',
+        left:'10%',
+        overflow:'scroll',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
         border: 0,
         borderRadius: 0,
@@ -110,11 +112,13 @@ class UserContainer extends Component {
         if (status === 1) {
             return (
                 <Chip
+
                     variant="default"
                     size="small"
                     color="secondary"
                     label="Pending Activation"
                     style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#C8C800"
                     }}
                     icon={<AssignmentTurnedInIcon/>}
@@ -128,6 +132,7 @@ class UserContainer extends Component {
                     label="Active"
                     color="secondary"
                     style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#00c800"
                     }}
                     icon={<DoneAllIcon/>}
@@ -142,6 +147,7 @@ class UserContainer extends Component {
                     color="secondary"
                     icon={<BlockIcon/>}
                     style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#c80000"
                     }}
                 />
@@ -195,7 +201,7 @@ class UserContainer extends Component {
     };
 
     onViewAdvertisement(e, id) {
-        let url = getBaseURL("/public/v1/advertisement/"+id);
+        let url = getBaseURL("/public/v1/advertisement/" + id);
         axios.get(url).then(res => {
             console.log(res.data);
             this.setState({
@@ -238,7 +244,11 @@ class UserContainer extends Component {
                 <Container>
                     <Grid container spacing={1} className={classes.gridContainer}>
                         <Grid item xs={12} sm={6} className={classes.mainTitle}>
-                            <Typography variant="h5">
+                            <Typography
+                                style={{
+                                    fontFamily: "'Nunito Sans', sans-serif",
+                                }}
+                                variant="h5">
                                 Dashboard
                             </Typography>
                         </Grid>
@@ -246,6 +256,9 @@ class UserContainer extends Component {
                             <Tooltip
                                 title="Add Advertisement" aria-label="add">
                                 <Button
+                                    style={{
+                                        fontFamily: "'Nunito Sans', sans-serif",
+                                    }}
                                     variant="contained"
                                     color="primary"
                                     href="/dashboard/advertisement/add"
@@ -257,7 +270,11 @@ class UserContainer extends Component {
                     </Grid>
                     <Grid spacing={1} className={classes.gridContainer}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
-                            <Typography variant="h6" className={classes.subTitle}>
+                            <Typography
+                                style={{
+                                    fontFamily: "'Nunito Sans', sans-serif",
+                                }}
+                                variant="h6" className={classes.subTitle}>
                                 Your Advertisements
                             </Typography>
                         </Grid>
@@ -266,7 +283,9 @@ class UserContainer extends Component {
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <form className={classes.filterForm} noValidate autoComplete="off">
                                 <TextField
-                                    id=""
+                                    style={{
+                                        fontFamily: "'Nunito Sans', sans-serif",
+                                    }}
                                     select
                                     label="Select"
                                     defaultValue={-1}
@@ -275,7 +294,11 @@ class UserContainer extends Component {
                                     }}
                                 >
                                     {this.state.statuses.map(function (row, i) {
-                                        return (<MenuItem value={row.id}>{row.text}</MenuItem>)
+                                        return (<MenuItem
+                                            style={{
+                                                fontFamily: "'Nunito Sans', sans-serif",
+                                            }}
+                                            value={row.id}>{row.text}</MenuItem>)
                                     })}
                                 </TextField>
                             </form>
@@ -289,20 +312,24 @@ class UserContainer extends Component {
                                             src={getImageURL(row.image, "thumbnail")}
                                             variant="square"/>
                                 </ListItemAvatar>
-                                <ListItemText primary={row.title} secondary={
-                                    <Grid container spacing={1}>
-                                        <Grid item xs={12} sm={4} md={4} lg={4}>{row.expire_date}</Grid>
-                                        <Grid item xs={12} sm={4} md={4}
-                                              lg={4}>{this.getStatusTag(row.status.id)}</Grid>
-                                    </Grid>
-                                }/>
+                                <ListItemText
+                                    primary={<section style={{fontFamily: "'Nunito Sans', sans-serif"}}>{row.title}</section>}
+                                    secondary={
+                                        <Grid container spacing={1}>
+                                            <Grid style={{fontFamily: "'Nunito Sans', sans-serif",}} item xs={12} sm={4}
+                                                  md={4} lg={4}>{row.expire_date}</Grid>
+                                            <Grid style={{fontFamily: "'Nunito Sans', sans-serif",}} item xs={12} sm={4}
+                                                  md={4}
+                                                  lg={4}>{this.getStatusTag(row.status.id)}</Grid>
+                                        </Grid>
+                                    }/>
                                 <ListItemSecondaryAction>
                                     <IconButton onClick={e => {
                                         this.onEditAdvertisement(e, row.id)
                                     }} aria-label="edit">
                                         <EditIcon fontSize="small"/>
                                     </IconButton>
-                                    <IconButton onClick={e =>{
+                                    <IconButton onClick={e => {
                                         this.onViewAdvertisement(e, row.id)
                                     }}>
                                         <VisibilityIcon fontSize="small"/>
@@ -320,6 +347,9 @@ class UserContainer extends Component {
                             }}
                             icon={<ArrowBackIosIcon/>}/>
                         <BottomNavigationAction
+                            style={{
+                                fontFamily: "'Nunito Sans', sans-serif",
+                            }}
                             disabled={true}
                             icon={<b>{this.state.pagination.current + 1}</b>}
                         />

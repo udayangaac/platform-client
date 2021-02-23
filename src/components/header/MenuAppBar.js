@@ -43,10 +43,23 @@ export default function MenuAppBar() {
 
         AppBarItems = (
             <Toolbar>
-                <IconButton href="/" edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                <IconButton
+                    style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
+                    }}
+                    href="/"
+                    edge="start"
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="menu">
                     <MenuIcon/>
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
+                <Typography
+                    style={{
+                        fontFamily: "'Nunito Sans', sans-serif",
+                    }}
+                    variant="h6"
+                    className={classes.title}>
                     {profile.user_name}
                 </Typography>
                 <section>
@@ -61,6 +74,9 @@ export default function MenuAppBar() {
                             <Avatar src={profile.profile_image}/>
                         </IconButton>
                         <Menu
+                            style={{
+                                fontFamily: "'Nunito Sans', sans-serif",
+                            }}
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
@@ -76,10 +92,21 @@ export default function MenuAppBar() {
                             onClose={handleCloseDropdown}
                         >
                             <MenuItem>
-                                <Button size="small" href="/dashboard">dashboard</Button>
+                                <Button
+                                    style={{
+                                        fontFamily: "'Nunito Sans', sans-serif",
+                                    }}
+                                    size="small"
+                                    href="/dashboard">dashboard</Button>
                             </MenuItem>
                             <MenuItem>
-                                <Button size="small" startIcon={<DeleteIcon />} href="/logout">Logout</Button>
+                                <Button
+                                    style={{
+                                        fontFamily: "'Nunito Sans', sans-serif",
+                                    }}
+                                    size="small"
+                                    startIcon={<DeleteIcon/>}
+                                    href="/logout">Logout</Button>
                             </MenuItem>
                         </Menu>
                     </div>

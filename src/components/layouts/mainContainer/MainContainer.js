@@ -39,8 +39,11 @@ const styles = (theme) => ({
         fontFamily: "'Nunito Sans', sans-serif",
     },
     modal: {
+        position:'absolute',
+        left:'10%',
+        overflow:'scroll',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'stretch',
         justifyContent: 'center',
         border: 0,
         borderRadius: 0,
@@ -54,7 +57,6 @@ const styles = (theme) => ({
             outline: "none",
             border: 0,
         },
-        width:"100%"
     },
     modalContent: {
         fontFamily: "'Nunito Sans', sans-serif",

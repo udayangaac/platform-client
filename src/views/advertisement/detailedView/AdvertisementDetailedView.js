@@ -11,11 +11,15 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import SimpleReactLightbox, {SRLWrapper} from "simple-react-lightbox";
 import getImageURL from "../../../services/api/getResouceURL";
+import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
+import draftJsToHtml from "draftjs-to-html";
+import unEscape from "unescape-js";
 
 
 const styles = (theme) => ({
     root: {
         width: "100%",
+        maxWidth: "70ch",
         height: "auto",
         position: 'relative',
         fontFamily: "'Nunito Sans', sans-serif",
@@ -65,23 +69,6 @@ const styles = (theme) => ({
 
     bottomRightContent: {},
 
-    modal: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: 0,
-        borderRadius: 0,
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: 'white',
-        "&:focus": {
-            outline: "none",
-            border: 0,
-        },
-        "&:active": {
-            outline: "none",
-            border: 0,
-        },
-    },
     modalContent: {
         outline: 0
     },
@@ -89,7 +76,7 @@ const styles = (theme) => ({
         position: "relative",
         top: theme.spacing.unit,
     },
-    content:{
+    content: {
         fontFamily: "'Nunito Sans', sans-serif",
     },
     priceTag: {
@@ -119,7 +106,7 @@ const options = {
         thumbnailsIconColor: '#ffffff',
         thumbnailsOpacity: 0.4,
         thumbnailsPosition: 'bottom',
-        thumbnailsSize: ['20px', '20px']
+        thumbnailsSize: ['200px', '200px']
     },
     buttons: {
         iconPadding: "10px",
@@ -128,9 +115,28 @@ const options = {
 
 };
 
+
 class AdvertisementDetailedView extends Component {
     constructor(props) {
         super(props);
+    }
+
+    getDescHtml(text) {
+        try {
+            const json = JSON.parse(unEscape(text));
+            const raw = convertFromRaw(json);
+            const state = EditorState.createWithContent(raw);
+            let __html = "";
+            if (state) {
+                const content = state.getCurrentContent();
+                const raw = convertToRaw(content);
+                __html = draftJsToHtml(raw);
+            }
+            console.log(__html);
+            return __html;
+        } catch (e) {
+            return "<span>" + text + "</span>";
+        }
     }
 
     render() {
@@ -203,7 +209,7 @@ class AdvertisementDetailedView extends Component {
                             {this.props.data.title}
                         </Typography>
                         <Typography variant="body" color="textSecondary" component="p">
-                            {this.props.data.desc}
+                            <div dangerouslySetInnerHTML={{__html: this.getDescHtml(this.props.data.desc)}}/>
                         </Typography>
                         <br/>
                         <SimpleReactLightbox>
@@ -225,7 +231,7 @@ class AdvertisementDetailedView extends Component {
                             <LocationOnIcon className={classes.icon}/> {this.props.data.location}
                         </Typography>
                         <br/>
-                        <Typography  className={classes.content}>
+                        <Typography className={classes.content}>
                             <PhoneIcon className={classes.icon}/> {this.props.data.phone}
                         </Typography>
                         <br/>
