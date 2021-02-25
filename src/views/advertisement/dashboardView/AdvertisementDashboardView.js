@@ -24,8 +24,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import {Editor} from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
-import safeJson from "js-string-escape";
 import unEscape from "unescape-js";
+import MuiPhoneNumber from "material-ui-phone-number";
 
 const styles = (theme) => ({
     gridContainer: {
@@ -95,7 +95,7 @@ const styles = (theme) => ({
         height: "auto",
     },
     descEditor: {
-        lineHeight:"1px",
+        lineHeight: 1,
     }
 });
 
@@ -140,7 +140,7 @@ class AdvertisementDashboardView extends Component {
             email: "",
             price: 0,
 
-            editorState: this.stringToDraftState('{"blocks":[{"key":"492qc","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}')
+            editorState: this.stringToDraftState('{"blocks":[{"key":"492qc","text":"Please describe your advertisement here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}],"entityMap":{}}')
         };
 
 
@@ -456,6 +456,12 @@ class AdvertisementDashboardView extends Component {
         }
     }
 
+    handleOnPhoneChange(num) {
+        this.setState({
+            phone: num,
+        })
+    }
+
     render() {
         const {classes} = this.props;
         return (
@@ -465,30 +471,28 @@ class AdvertisementDashboardView extends Component {
                     <form onSubmit={e => this.onSubmit(e)}>
 
                         <Grid container className={classes.gridContainer}>
-                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h4"
+                            <Typography variant="h4"
                                         className={classes.mainTitle}>
                                 {this.props.title}
                             </Typography>
                         </Grid>
 
                         {this.state.is_alert_visible && (
-                            <Alert style={{fontFamily: "'Nunito Sans', sans-serif"}} className={classes.topAlert}
+                            <Alert className={classes.topAlert}
                                    severity="error">
-                                <AlertTitle
-                                    style={{fontFamily: "'Nunito Sans', sans-serif"}}>{this.state.alert_title}</AlertTitle>
+                                <AlertTitle>{this.state.alert_title}</AlertTitle>
                                 {this.state.alert_message}
                             </Alert>)}
 
 
                         <Grid container className={classes.gridContainer}>
-                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                            <Typography variant="h6"
                                         className={classes.mainTitle}>
                                 Title
                             </Typography>
                         </Grid>
                         <Grid container spacing={1} className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 name="title"
                                 type="text"
                                 required
@@ -500,25 +504,8 @@ class AdvertisementDashboardView extends Component {
                         </Grid>
 
 
-                        {/*<Grid container className={classes.gridContainer}>*/}
-                        {/*    <TextField*/}
-                        {/*        style={{fontFamily: "'Nunito Sans', sans-serif"}}*/}
-                        {/*        label="Description"*/}
-                        {/*        type="text"*/}
-                        {/*        name="desc"*/}
-                        {/*        required*/}
-                        {/*        multiline*/}
-                        {/*        rows={5}*/}
-                        {/*        value={this.state.desc}*/}
-                        {/*        onChange={e => {*/}
-                        {/*            this.onChange(e)*/}
-                        {/*        }}*/}
-                        {/*    />*/}
-                        {/*</Grid>*/}
-
-
                         <Grid container className={classes.gridContainer}>
-                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                            <Typography variant="h6"
                                         className={classes.mainTitle}>
                                 Description
                             </Typography>
@@ -531,13 +518,13 @@ class AdvertisementDashboardView extends Component {
                                 editorState={this.state.editorState}
                                 stripPastedStyles={true}
                                 editorClassName={classes.descEditor}
-                                    onEditorStateChange={(text) => {
-                                this.setState({
-                                    editorState: text,
-                                    desc: JSON.stringify(convertToRaw(text.getCurrentContent()))
-                                });
+                                onEditorStateChange={(text) => {
+                                    this.setState({
+                                        editorState: text,
+                                        desc: JSON.stringify(convertToRaw(text.getCurrentContent()))
+                                    });
 
-                            }}
+                                }}
                                 toolbar={{
                                     options: ["inline", "list", "link", "colorPicker"],
                                     emoji: {
@@ -550,7 +537,6 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="Category"
                                 name="category_id"
@@ -562,8 +548,7 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.categories.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                                          value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -571,7 +556,6 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="Country"
                                 required
@@ -584,8 +568,7 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.countries.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                                          value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -593,7 +576,6 @@ class AdvertisementDashboardView extends Component {
 
                         <Grid container className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
                                 select
                                 label="City"
                                 name="city_id"
@@ -605,8 +587,7 @@ class AdvertisementDashboardView extends Component {
                             >
                                 {this.state.cities.map(function (row, i) {
                                     if (row.ID !== 0) {
-                                        return (<MenuItem style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                                          value={row.ID}>{row.name}</MenuItem>)
+                                        return (<MenuItem value={row.ID}>{row.name}</MenuItem>)
                                     }
                                 })}
                             </TextField>
@@ -614,7 +595,7 @@ class AdvertisementDashboardView extends Component {
 
 
                         <Grid container className={classes.gridContainer}>
-                            <Typography style={{fontFamily: "'Nunito Sans', sans-serif"}} variant="h6"
+                            <Typography variant="h6"
                                         className={classes.mainTitle}>
                                 Image Preview
                             </Typography>
@@ -673,23 +654,25 @@ class AdvertisementDashboardView extends Component {
                         </Grid>
 
                         <Grid container className={classes.gridContainer}>
-                            <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                label="Phone"
-                                type="phone"
-                                name="phone"
-                                value={this.state.phone}
+                            <Typography variant="h6" className={classes.mainTitle}>Phone</Typography>
+                        </Grid>
+                        <Grid container className={classes.gridContainer}>
+                            <MuiPhoneNumber
+                                autoFormat={true}
                                 required
-                                onChange={e => {
-                                    this.onChange(e)
-                                }}
-                            />
+                                value={this.state.phone}
+                                defaultCountry={'lk'} onChange={e => {
+                                this.handleOnPhoneChange(e)
+                            }}/>,
                         </Grid>
 
+
+
+                        <Grid container className={classes.gridContainer}>
+                            <Typography variant="h6" className={classes.mainTitle}>E-mail</Typography>
+                        </Grid>
                         <Grid container className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                label="E-mail"
                                 type="email"
                                 name="email"
                                 value={this.state.email}
@@ -700,9 +683,10 @@ class AdvertisementDashboardView extends Component {
                         </Grid>
 
                         <Grid container className={classes.gridContainer}>
+                            <Typography variant="h6" className={classes.mainTitle}>Price</Typography>
+                        </Grid>
+                        <Grid container className={classes.gridContainer}>
                             <TextField
-                                style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                label="Price"
                                 type="price"
                                 name="price"
                                 required
@@ -717,25 +701,23 @@ class AdvertisementDashboardView extends Component {
 
                             {/*Submit advertisement for approval process*/}
                             {(this.props.type === 'user_add') &&
-                            <Button style={{fontFamily: "'Nunito Sans', sans-serif"}} type="submit" variant="contained">
+                            <Button type="submit" variant="contained">
                                 Submit
                             </Button>}
 
                             {/*Button to re submit the changes to the platform*/}
                             {/*When we resubmitting remove the */}
                             {(this.props.type === 'user_add_edit') &&
-                            <Button style={{fontFamily: "'Nunito Sans', sans-serif"}} type="submit" variant="contained">
+                            <Button type="submit" variant="contained">
                                 Re Submit
                             </Button>}
 
                             {/* Button for admin usage */}
                             {(this.props.type === 'admin') && <>
-                                <Button type="submit" style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                        variant="contained">
+                                <Button type="submit" variant="contained">
                                     Approve
                                 </Button>
-                                <Button type="submit" style={{fontFamily: "'Nunito Sans', sans-serif"}}
-                                        variant="contained">
+                                <Button type="submit" variant="contained">
                                     Block
                                 </Button>
                             </>}

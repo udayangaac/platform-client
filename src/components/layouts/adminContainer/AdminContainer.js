@@ -38,11 +38,9 @@ const styles = (theme) => ({
         backgroundColor: theme.palette.background.paper,
     },
     mainTitle: {
-        fontFamily: "'Nunito Sans', sans-serif",
         margin: theme.spacing(2, 0, 2),
     },
     subTitle: {
-        fontFamily: "'Nunito Sans', sans-serif",
         margin: theme.spacing(2, 0, 0),
     },
     listAvatarSmall: {
@@ -55,14 +53,11 @@ const styles = (theme) => ({
         margin: theme.spacing(0, 1, 0),
     },
     addButton: {
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     statusDropdown: {
-        fontFamily: "'Nunito Sans', sans-serif",
         minWidth: "200px"
     },
     filterForm: {
-        fontFamily: "'Nunito Sans', sans-serif",
         '& .MuiTextField-root': {
             margin: theme.spacing(1),
             width: 200,
@@ -90,10 +85,8 @@ const styles = (theme) => ({
     },
     modalContent: {
         outline: 0,
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     font: {
-        fontFamily: "'Nunito Sans', sans-serif",
     }
 });
 

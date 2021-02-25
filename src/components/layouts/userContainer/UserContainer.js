@@ -65,9 +65,9 @@ const styles = (theme) => ({
         }
     },
     modal: {
-        position:'absolute',
-        left:'10%',
-        overflow:'scroll',
+        position: 'absolute',
+        left: '10%',
+        overflow: 'scroll',
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'center',
@@ -118,7 +118,6 @@ class UserContainer extends Component {
                     color="secondary"
                     label="Pending Activation"
                     style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#C8C800"
                     }}
                     icon={<AssignmentTurnedInIcon/>}
@@ -132,7 +131,6 @@ class UserContainer extends Component {
                     label="Active"
                     color="secondary"
                     style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#00c800"
                     }}
                     icon={<DoneAllIcon/>}
@@ -147,7 +145,6 @@ class UserContainer extends Component {
                     color="secondary"
                     icon={<BlockIcon/>}
                     style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
                         backgroundColor: "#c80000"
                     }}
                 />
@@ -245,9 +242,6 @@ class UserContainer extends Component {
                     <Grid container spacing={1} className={classes.gridContainer}>
                         <Grid item xs={12} sm={6} className={classes.mainTitle}>
                             <Typography
-                                style={{
-                                    fontFamily: "'Nunito Sans', sans-serif",
-                                }}
                                 variant="h5">
                                 Dashboard
                             </Typography>
@@ -256,9 +250,6 @@ class UserContainer extends Component {
                             <Tooltip
                                 title="Add Advertisement" aria-label="add">
                                 <Button
-                                    style={{
-                                        fontFamily: "'Nunito Sans', sans-serif",
-                                    }}
                                     variant="contained"
                                     color="primary"
                                     href="/dashboard/advertisement/add"
@@ -271,9 +262,6 @@ class UserContainer extends Component {
                     <Grid spacing={1} className={classes.gridContainer}>
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <Typography
-                                style={{
-                                    fontFamily: "'Nunito Sans', sans-serif",
-                                }}
                                 variant="h6" className={classes.subTitle}>
                                 Your Advertisements
                             </Typography>
@@ -283,9 +271,6 @@ class UserContainer extends Component {
                         <Grid item xs={12} sm={6} md={6} lg={6}>
                             <form className={classes.filterForm} noValidate autoComplete="off">
                                 <TextField
-                                    style={{
-                                        fontFamily: "'Nunito Sans', sans-serif",
-                                    }}
                                     select
                                     label="Select"
                                     defaultValue={-1}
@@ -295,9 +280,6 @@ class UserContainer extends Component {
                                 >
                                     {this.state.statuses.map(function (row, i) {
                                         return (<MenuItem
-                                            style={{
-                                                fontFamily: "'Nunito Sans', sans-serif",
-                                            }}
                                             value={row.id}>{row.text}</MenuItem>)
                                     })}
                                 </TextField>
@@ -313,12 +295,12 @@ class UserContainer extends Component {
                                             variant="square"/>
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary={<section style={{fontFamily: "'Nunito Sans', sans-serif"}}>{row.title}</section>}
+                                    primary={<section>{row.title}</section>}
                                     secondary={
                                         <Grid container spacing={1}>
-                                            <Grid style={{fontFamily: "'Nunito Sans', sans-serif",}} item xs={12} sm={4}
+                                            <Grid item xs={12} sm={4}
                                                   md={4} lg={4}>{row.expire_date}</Grid>
-                                            <Grid style={{fontFamily: "'Nunito Sans', sans-serif",}} item xs={12} sm={4}
+                                            <Grid item xs={12} sm={4}
                                                   md={4}
                                                   lg={4}>{this.getStatusTag(row.status.id)}</Grid>
                                         </Grid>
@@ -347,9 +329,6 @@ class UserContainer extends Component {
                             }}
                             icon={<ArrowBackIosIcon/>}/>
                         <BottomNavigationAction
-                            style={{
-                                fontFamily: "'Nunito Sans', sans-serif",
-                            }}
                             disabled={true}
                             icon={<b>{this.state.pagination.current + 1}</b>}
                         />

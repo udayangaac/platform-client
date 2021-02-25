@@ -8,11 +8,11 @@ import Chip from "@material-ui/core/Chip";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import withStyles from "@material-ui/core/styles/withStyles";
 import getImageURL from "../../../services/api/getResouceURL";
+import Price from "react-price";
 
 
 const styles = (theme) => ({
     root: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'relative',
     },
     media: {
@@ -20,42 +20,35 @@ const styles = (theme) => ({
         width: "100%",
     },
     locationTagContainer: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         top: theme.spacing(0.5),
         left: theme.spacing(0.5),
     },
     locationTag: {
         margin: theme.spacing(0.5),
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     title: {
-        fontFamily: "'Nunito Sans', sans-serif",
         fontWeight: "bold",
     },
     locationTopRightTagContainer: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         top: theme.spacing(0.5),
         right: theme.spacing(0.5),
     },
 
     locationTopLeftTagContainer: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         top: theme.spacing(0.5),
         left: theme.spacing(0.5),
     },
 
     locationBottomRightTagContainer: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         bottom: theme.spacing(0.5),
         right: theme.spacing(0.5),
     },
 
     locationBottomLeftTagContainer: {
-        fontFamily: "'Nunito Sans', sans-serif",
         position: 'absolute',
         bottom: theme.spacing(0.5),
         left: theme.spacing(0.5),
@@ -86,7 +79,7 @@ class AdvertisementShortView extends Component {
                                 {this.props.data.desc_part}
                             </Typography>
                             <Typography className={classes.title} variant="h5" color="textSecondary">
-                                <b>{this.props.data.price_str}</b>
+                                <Price currencyFirst={true} currency={"LKR"} cost={this.props.data.price_str} />
                             </Typography>
                         </CardContent>
                         {this.props.data.labels.map((tile, i) => {

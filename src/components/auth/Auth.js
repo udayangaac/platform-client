@@ -4,9 +4,11 @@ import AuthService from "../../services/auth";
 import Login from "../../views/login";
 
 class Auth extends Component {
+
     constructor(props) {
         super(props);
     }
+    
     render() {
         let profile = AuthService.getLocalStorageProfile();
         if (profile=== null || profile=== undefined){

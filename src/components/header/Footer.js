@@ -7,13 +7,10 @@ export default function MenuAppBar() {
     return (
         <Box mt={8}>
             <Typography
-                style={{
-                    fontFamily: "'Nunito Sans', sans-serif",
-                }}
                 variant="body2" color="textSecondary" align="center">
                 {'Copyright © '}
-                <Link color="inherit" href="https://material-ui.com/">
-                    Your Website
+                <Link color="inherit" href="http://www.classifidea.com">
+                    Classifidea
                 </Link>{' '}
                 {new Date().getFullYear()}
                 {'.'}

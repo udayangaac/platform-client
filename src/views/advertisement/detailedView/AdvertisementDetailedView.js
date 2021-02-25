@@ -14,6 +14,10 @@ import getImageURL from "../../../services/api/getResouceURL";
 import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
 import draftJsToHtml from "draftjs-to-html";
 import unEscape from "unescape-js";
+import CategoryIcon from '@material-ui/icons/Category';
+import FingerprintTwoToneIcon from '@material-ui/icons/FingerprintTwoTone';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import Price from 'react-price';
 
 
 const styles = (theme) => ({
@@ -22,7 +26,6 @@ const styles = (theme) => ({
         maxWidth: "70ch",
         height: "auto",
         position: 'relative',
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     media: {
         position: 'relative',
@@ -56,10 +59,8 @@ const styles = (theme) => ({
 
     locationTag: {
         margin: theme.spacing(0.5),
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     title: {
-        fontFamily: "'Nunito Sans', sans-serif",
         fontWeight: "bold",
     },
     bottomContent: {
@@ -77,14 +78,11 @@ const styles = (theme) => ({
         top: theme.spacing.unit,
     },
     content: {
-        fontFamily: "'Nunito Sans', sans-serif",
     },
     priceTag: {
         position: 'absolute',
         bottom: theme.spacing(0.5),
         right: theme.spacing(1),
-        fontFamily: "'Nunito Sans', sans-serif",
-        fontWeight: "400",
     },
     smallImages: {
         padding: theme.spacing(0.25),
@@ -182,6 +180,7 @@ class AdvertisementDetailedView extends Component {
                                             size="small"
                                             label={tile.name}
                                             color="primary"
+                                            icon={<LibraryBooksIcon/>}
                                             style={{
                                                 backgroundColor: tile.color
                                             }}
@@ -194,7 +193,7 @@ class AdvertisementDetailedView extends Component {
                                             size="small"
                                             label={tile.name}
                                             color="primary"
-                                            icon={<AssignmentIcon/>}
+                                            icon={<FingerprintTwoToneIcon/>}
                                             style={{
                                                 backgroundColor: tile.color
                                             }}
@@ -236,7 +235,7 @@ class AdvertisementDetailedView extends Component {
                         </Typography>
                         <br/>
                         <Typography className={classes.priceTag} variant="h4" color="textSecondary">
-                            {this.props.data.currency_code + " " + this.props.data.price_str}
+                            <Price currencyFirst={true} currency={this.props.data.currency_code} cost={this.props.data.price_str} />
                         </Typography>
                     </CardContent>
                 </Card>

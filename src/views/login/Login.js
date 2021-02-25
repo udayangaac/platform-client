@@ -47,7 +47,6 @@ const styles = (theme) => ({
         padding: '0 30px',
         width: "100%",
         fontSize: 15,
-        fontFamily: "'Nunito Sans', sans-serif",
     }
 });
 
@@ -78,9 +77,6 @@ class Login extends Component {
             <section>
                 <MenuAppBar/>
                 <Container
-                    style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
-                    }}
                     component="main" maxWidth="xs">
                     <CssBaseline/>
                     <div className={classes.paper}>
@@ -88,9 +84,6 @@ class Login extends Component {
                             <LockOutlinedIcon/>
                         </Avatar>
                         <Typography
-                            style={{
-                                fontFamily: "'Nunito Sans', sans-serif",
-                            }}
                             component="h1"
                             variant="h5">
                             <b>Get into the platform</b>
@@ -109,9 +102,6 @@ class Login extends Component {
                             <Grid container>
                                 <Grid item xs>
                                     <Link
-                                        style={{
-                                            fontFamily: "'Nunito Sans', sans-serif",
-                                        }}
                                         href="#" variant="body2">
                                         You dont have facebook account ?
                                     </Link>

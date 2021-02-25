@@ -21,27 +21,24 @@ import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import MessengerCustomerChat from "react-messenger-customer-chat";
 
 const styles = (theme) => ({
     gridContainer: {
         paddingTop: '10px'
     },
     formControl: {
-        fontFamily: "'Nunito Sans', sans-serif",
         margin: theme.spacing(0.5),
         minWidth: 100,
     },
     searchFormControl: {
-        fontFamily: "'Nunito Sans', sans-serif",
         width: "100%",
     },
-    title: {
-        fontFamily: "'Nunito Sans', sans-serif",
-    },
+    title: {},
     modal: {
-        position:'absolute',
-        left:'10%',
-        overflow:'scroll',
+        position: 'absolute',
+        left: '10%',
+        overflow: 'scroll',
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'center',
@@ -59,11 +56,13 @@ const styles = (theme) => ({
         },
     },
     modalContent: {
-        fontFamily: "'Nunito Sans', sans-serif",
         outline: 0
     },
-    font: {
-        fontFamily: "'Nunito Sans', sans-serif",
+    filterBtn: {
+        textTransform: "capitalize"
+    },
+    searchBtn: {
+        textTransform: "capitalize"
     }
 });
 
@@ -324,7 +323,6 @@ class MainContainer extends Component {
                                             style={{
                                                 pointerEvents: isDisabled || isReadOnly ? 'none' : undefined,
                                                 backgroundColor: isFocused ? blue : undefined,
-                                                fontFamily: "'Nunito Sans', sans-serif",
                                             }}
                                             size="small"
                                             onClick={handleClick}
@@ -349,7 +347,8 @@ class MainContainer extends Component {
                                         defaultValue={0}>
                                         {this.state.categories.map(function (row, i) {
                                             if (row.id !== -1) {
-                                                return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                                return (<MenuItem className={classes.font}
+                                                                  value={row.ID}>{row.name}</MenuItem>)
                                             }
                                         })}
                                     </Select>
@@ -368,7 +367,8 @@ class MainContainer extends Component {
                                         }}
                                         defaultValue={0}>
                                         {this.state.countries.map(function (row, i) {
-                                            return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                            return (
+                                                <MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
                                         })}
                                     </Select>
                                 </FormControl>
@@ -385,16 +385,17 @@ class MainContainer extends Component {
                                         }}
                                         defaultValue={0}>
                                         {this.state.cities.map(function (row, i) {
-                                            return (<MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
+                                            return (
+                                                <MenuItem className={classes.font} value={row.ID}>{row.name}</MenuItem>)
                                         })}
                                     </Select>
                                 </FormControl>
                             </FormGroup>
                         </Grid>
                         <Grid item xs={12} sm={2} md={2} lg={2}>
-                            <FormControl  className={classes.formControl}>
+                            <FormControl className={classes.formControl}>
                                 <Button
-                                    className={classes.font}
+                                    className={classes.searchBtn}
                                     variant="contained"
                                     color="primary"
                                     size="small"
@@ -407,7 +408,7 @@ class MainContainer extends Component {
                         <Grid item xs={12} sm={12} md={12} lg={12}>
                             <FormControl className={classes.formControl}>
                                 <Button
-                                    className={classes.font}
+                                    className={classes.filterBtn}
                                     variant={"text"}
                                     color="primary"
                                     size="small"
@@ -448,6 +449,14 @@ class MainContainer extends Component {
                             }}
                             icon={<ArrowForwardIosIcon/>}/>
                     </BottomNavigation>
+                    <div>
+                        <MessengerCustomerChat
+                            pageId="102850301858242"
+                            appId="1315776515444028"
+                            loggedInGreeting="Chat with us"
+                            loggedOutGreeting="Thank you"
+                        />
+                    </div>
                 </Container>
                 <div>
                     <Modal

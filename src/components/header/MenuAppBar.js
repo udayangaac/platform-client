@@ -4,13 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import AuthService from "../../services/auth";
 import MenuItem from "@material-ui/core/MenuItem";
+import logo from '../../img/logo.png'
 import DeleteIcon from '@material-ui/icons/Delete';
+import Link from "@material-ui/core/Link";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         fontFamily: " 'Montserrat', sans-serif",
     },
+    logo: {
+        maxHeight: 80,
+    }
 }));
 
 export default function MenuAppBar() {
@@ -43,24 +48,18 @@ export default function MenuAppBar() {
 
         AppBarItems = (
             <Toolbar>
-                <IconButton
-                    style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
-                    }}
-                    href="/"
-                    edge="start"
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="menu">
-                    <MenuIcon/>
-                </IconButton>
+                {/*<IconButton*/}
+                {/*    href="/"*/}
+                {/*    edge="start"*/}
+                {/*    className={classes.menuButton}*/}
+                {/*    color="inherit"*/}
+                {/*    aria-label="menu">*/}
+                {/*    <MenuIcon/>*/}
+                {/*</IconButton>*/}
+                <img src={logo} alt="Kitty Katty!" className={classes.logo}/>
                 <Typography
-                    style={{
-                        fontFamily: "'Nunito Sans', sans-serif",
-                    }}
                     variant="h6"
                     className={classes.title}>
-                    {profile.user_name}
                 </Typography>
                 <section>
                     <div>
@@ -74,9 +73,6 @@ export default function MenuAppBar() {
                             <Avatar src={profile.profile_image}/>
                         </IconButton>
                         <Menu
-                            style={{
-                                fontFamily: "'Nunito Sans', sans-serif",
-                            }}
                             id="menu-appbar"
                             anchorEl={anchorEl}
                             anchorOrigin={{
@@ -91,19 +87,15 @@ export default function MenuAppBar() {
                             open={handleOpenDropdown}
                             onClose={handleCloseDropdown}
                         >
-                            <MenuItem>
-                                <Button
-                                    style={{
-                                        fontFamily: "'Nunito Sans', sans-serif",
-                                    }}
-                                    size="small"
-                                    href="/dashboard">dashboard</Button>
+                            <MenuItem
+                                href="/dashboard"
+                            >
+                                Dashboard
+                                {/*<Button variant="text" size="small">dashboard</Button>*/}
                             </MenuItem>
-                            <MenuItem>
+                            <MenuItem onClick={(event) => {this.props.history.push("/logout")}}>
                                 <Button
-                                    style={{
-                                        fontFamily: "'Nunito Sans', sans-serif",
-                                    }}
+                                    variant="text"
                                     size="small"
                                     startIcon={<DeleteIcon/>}
                                     href="/logout">Logout</Button>
@@ -116,9 +108,10 @@ export default function MenuAppBar() {
     } else {
         AppBarItems = (
             <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon/>
-                </IconButton>
+                {/*<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">*/}
+                {/*    <MenuIcon/>*/}
+                {/*</IconButton>*/}
+                <img src={logo} alt="Kitty Katty!" className={classes.logo}/>
                 <Typography variant="h6" className={classes.title}>
                 </Typography>
                 <section>
