@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fffb4993-5068-40f2-b9de-bb53fa73db47" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/MenuAppBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/adminContainer/AdminContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/adminContainer/AdminContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/mainContainer/MainContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layouts/userContainer/UserContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/configure/ConfigureAdvertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/configure/ConfigureAdvertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/dashboardView/AdvertisementDashboardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/dashboardView/AdvertisementDashboardView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/detailedView/AdvertisementDetailedView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/detailedView/AdvertisementDetailedView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/advertisement/edit/EditAdvertisement.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/advertisement/edit/EditAdvertisement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/api/ImageService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api/ImageService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/api/getBaseURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api/getBaseURL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/api/getResouceURL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/api/getResouceURL.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,10 +192,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="729" y="302" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1614090148922" />
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1614237227628">
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2" timestamp="1614360430886">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1614237227628" />
+    <state x="510" y="124" width="961" height="866" key="CommitChangelistDialog2/72.27.1848.1053@72.27.1848.1053" timestamp="1614360430886" />
     <state x="247" y="121" width="1478" height="879" key="DiffContextDialog" timestamp="1614083877875">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -281,10 +272,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="441" y="246" width="599" height="621" key="RollbackChangesDialog/72.27.1848.1053@72.27.1848.1053" timestamp="1614023719623" />
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1614237234900">
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2" timestamp="1614360432879">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1614237234900" />
+    <state x="591" y="278" width="800" height="558" key="Vcs.Push.Dialog.v2/72.27.1848.1053@72.27.1848.1053" timestamp="1614360432879" />
     <state x="708" y="235" width="566" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1614098808945">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
@@ -297,10 +288,10 @@
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
     <state x="179" y="27" width="1169" height="818" key="find.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1614331997823" />
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1614339153732">
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1614360146090">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1614339153732" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053@72.27.1848.1053" timestamp="1614360146090" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

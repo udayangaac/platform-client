@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseUrl = "http://localhost:8003";
+const baseUrl = "http://161.35.130.122:8003";
 
 class ImageService {
 

@@ -1,4 +1,4 @@
 function getBaseURL(path) {
-    return "http://127.0.0.1:8085" + path
+    return "http://161.35.130.122:8085" + path
 }
 export default getBaseURL;
