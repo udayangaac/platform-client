@@ -663,7 +663,7 @@ class AdvertisementDashboardView extends Component {
                                 value={this.state.phone}
                                 defaultCountry={'lk'} onChange={e => {
                                 this.handleOnPhoneChange(e)
-                            }}/>,
+                            }}/>
                         </Grid>
 
 

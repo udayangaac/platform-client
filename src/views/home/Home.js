@@ -6,7 +6,7 @@ import Footer from "../../components/header/Footer";
 function Home(props) {
     return (
         <section>
-            <MenuAppBar/>
+            <MenuAppBar />
             <MainContainer/>
             <Footer/>
         </section>

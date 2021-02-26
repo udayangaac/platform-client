@@ -52,8 +52,7 @@ const styles = (theme) => ({
         height: theme.spacing(10),
         margin: theme.spacing(0, 1, 0),
     },
-    addButton: {
-    },
+    addButton: {},
     statusDropdown: {
         minWidth: "200px"
     },
@@ -64,9 +63,9 @@ const styles = (theme) => ({
         }
     },
     modal: {
-        position:'absolute',
-        left:'10%',
-        overflow:'scroll',
+        position: 'absolute',
+        left: '10%',
+        overflow: 'scroll',
         display: 'flex',
         alignItems: 'stretch',
         justifyContent: 'center',
@@ -86,8 +85,7 @@ const styles = (theme) => ({
     modalContent: {
         outline: 0,
     },
-    font: {
-    }
+    font: {}
 });
 
 class AdminContainer extends Component {
@@ -255,7 +253,7 @@ class AdminContainer extends Component {
                     <Grid container spacing={1} className={classes.gridContainer}>
                         <Grid item xs={12} sm={6} className={classes.mainTitle}>
                             <Typography className={classes.font} variant="h5">
-                               <b>Dashboard</b>
+                                <b>Dashboard</b>
                             </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6} className={classes.mainTitle}>
@@ -391,7 +389,8 @@ class AdminContainer extends Component {
                     }}
                 >
                     <section className={classes.modalContent}>
-                        <AdvertisementDetailedView data={this.state.modelData}/>
+                        <AdvertisementDetailedView data={this.state.modelData}
+                                                   close={event => this.handleModelClose(event)}/>
                     </section>
                 </Modal>
             </div>

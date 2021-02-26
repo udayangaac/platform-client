@@ -75,7 +75,7 @@ class Login extends Component {
         const {classes} = this.props;
         return (
             <section>
-                <MenuAppBar/>
+                <MenuAppBar />
                 <Container
                     component="main" maxWidth="xs">
                     <CssBaseline/>

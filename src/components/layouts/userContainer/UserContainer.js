@@ -352,7 +352,7 @@ class UserContainer extends Component {
                     }}
                 >
                     <section className={classes.modalContent}>
-                        <AdvertisementDetailedView data={this.state.modelData}/>
+                        <AdvertisementDetailedView close={event => this.handleModelClose(event)} data={this.state.modelData}/>
                     </section>
                 </Modal>
             </div>

@@ -27,7 +27,7 @@ const styles = {
 function ConfigureAdvertisement(props) {
     return (
         <section>
-            <MenuAppBar/>
+            <MenuAppBar />
             <h1>Configure Advertisement</h1>
         </section>
     );

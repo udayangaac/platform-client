@@ -35,14 +35,14 @@ function Dashboard(props) {
     if (auth.role === 1) {
         return (
             <section>
-                <MenuAppBar/>
+                <MenuAppBar props={props}/>
                 <AdminContainer history={props.history}/>
             </section>
         );
     } else {
         return (
             <section>
-                <MenuAppBar/>
+                <MenuAppBar props={props}/>
                 <UserContainer history={props.history}/>
                 <Footer/>
             </section>

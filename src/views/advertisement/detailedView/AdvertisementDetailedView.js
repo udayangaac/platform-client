@@ -8,16 +8,15 @@ import Chip from "@material-ui/core/Chip";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PhoneIcon from '@material-ui/icons/Phone';
 import LocationOnIcon from "@material-ui/icons/LocationOn";
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import SimpleReactLightbox, {SRLWrapper} from "simple-react-lightbox";
 import getImageURL from "../../../services/api/getResouceURL";
 import {convertFromRaw, convertToRaw, EditorState} from "draft-js";
 import draftJsToHtml from "draftjs-to-html";
 import unEscape from "unescape-js";
-import CategoryIcon from '@material-ui/icons/Category';
 import FingerprintTwoToneIcon from '@material-ui/icons/FingerprintTwoTone';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import Price from 'react-price';
+import Button from "@material-ui/core/Button";
 
 
 const styles = (theme) => ({
@@ -56,6 +55,17 @@ const styles = (theme) => ({
         bottom: theme.spacing(0.5),
         left: theme.spacing(0.5),
     },
+    closeBtn: {
+        textTransform: "capitalize",
+    },
+    closeBtnContainer: {
+        position: 'absolute',
+        top: theme.spacing(0.5),
+        right: theme.spacing(0.5),
+    },
+    cardContent: {
+        position: 'relative',
+    },
 
     locationTag: {
         margin: theme.spacing(0.5),
@@ -77,8 +87,7 @@ const styles = (theme) => ({
         position: "relative",
         top: theme.spacing.unit,
     },
-    content: {
-    },
+    content: {},
     priceTag: {
         position: 'absolute',
         bottom: theme.spacing(0.5),
@@ -145,7 +154,7 @@ class AdvertisementDetailedView extends Component {
                     <CardActionArea disabled>
                         <CardMedia
                             className={classes.media}
-                            image={getImageURL(this.props.data.images[0], "thumbnail")}
+                            image={getImageURL(this.props.data.images[0], "800x600")}
                             title={this.props.data.title}
                         >
                             {this.props.data.labels.map((tile, i) => {
@@ -203,7 +212,10 @@ class AdvertisementDetailedView extends Component {
                             })}
                         </CardMedia>
                     </CardActionArea>
-                    <CardContent>
+                    <CardContent className={classes.cardContent}>
+                        <div className={classes.closeBtnContainer}>
+                            <Button className={classes.closeBtn} onClick={this.props.close}>Close</Button>
+                        </div>
                         <Typography className={classes.title} gutterBottom variant="h5" component="h2">
                             {this.props.data.title}
                         </Typography>
@@ -235,7 +247,8 @@ class AdvertisementDetailedView extends Component {
                         </Typography>
                         <br/>
                         <Typography className={classes.priceTag} variant="h4" color="textSecondary">
-                            <Price currencyFirst={true} currency={this.props.data.currency_code} cost={this.props.data.price_str} />
+                            <Price currencyFirst={true} currency={this.props.data.currency_code}
+                                   cost={this.props.data.price_str}/>
                         </Typography>
                     </CardContent>
                 </Card>

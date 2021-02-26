@@ -51,7 +51,7 @@ class EditAdvertisement extends Component{
     render() {
         return (
             <>
-                <MenuAppBar/>
+                <MenuAppBar />
                 <AdvertisementDashboardView
                     history={this.props.history}
                     type="user_add_edit"

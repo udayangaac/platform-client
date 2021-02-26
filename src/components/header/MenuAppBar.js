@@ -11,7 +11,6 @@ import AuthService from "../../services/auth";
 import MenuItem from "@material-ui/core/MenuItem";
 import logo from '../../img/logo.png'
 import DeleteIcon from '@material-ui/icons/Delete';
-import Link from "@material-ui/core/Link";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +55,9 @@ export default function MenuAppBar() {
                 {/*    aria-label="menu">*/}
                 {/*    <MenuIcon/>*/}
                 {/*</IconButton>*/}
-                <img src={logo} alt="Kitty Katty!" className={classes.logo}/>
+                <a href={"/"}>
+                    <img src={logo} alt="Kitty Katty!" className={classes.logo}/>
+                </a>
                 <Typography
                     variant="h6"
                     className={classes.title}>
@@ -93,7 +94,9 @@ export default function MenuAppBar() {
                                 Dashboard
                                 {/*<Button variant="text" size="small">dashboard</Button>*/}
                             </MenuItem>
-                            <MenuItem onClick={(event) => {this.props.history.push("/logout")}}>
+                            <MenuItem onClick={(event) => {
+                                this.props.history.push("/logout")
+                            }}>
                                 <Button
                                     variant="text"
                                     size="small"
@@ -111,7 +114,9 @@ export default function MenuAppBar() {
                 {/*<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">*/}
                 {/*    <MenuIcon/>*/}
                 {/*</IconButton>*/}
-                <img src={logo} alt="Kitty Katty!" className={classes.logo}/>
+                <a href={"/"}>
+                    <img  src={logo} alt="Kitty Katty!" className={classes.logo}/>
+                </a>
                 <Typography variant="h6" className={classes.title}>
                 </Typography>
                 <section>
