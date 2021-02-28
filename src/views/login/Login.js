@@ -12,11 +12,10 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
-
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Footer from "../../components/header/Footer";
+import getBaseURL from "../../services/api/getBaseURL";
 
 const styles = (theme) => ({
     paper: {
@@ -58,7 +57,7 @@ class Login extends Component {
     }
 
     responseFacebook = (response) => {
-        axios.get("http://localhost:8085/oauth2/v1/fb/authenticate?access_token=" + response.accessToken).then(res => {
+        axios.get(getBaseURL("/oauth2/v1/fb/authenticate?access_token=" + response.accessToken)).then(res => {
             console.log("Data from main API", res.data);
             AuthService.setLocalStorage(res.data);
             this.props.history.push("/dashboard");
@@ -75,7 +74,7 @@ class Login extends Component {
         const {classes} = this.props;
         return (
             <section>
-                <MenuAppBar />
+                <MenuAppBar/>
                 <Container
                     component="main" maxWidth="xs">
                     <CssBaseline/>
