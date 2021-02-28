@@ -91,8 +91,7 @@ export default function MenuAppBar() {
                             <MenuItem
                                 href="/dashboard"
                             >
-                                Dashboard
-                                {/*<Button variant="text" size="small">dashboard</Button>*/}
+                                <Button variant="text" size="small">Dashboard</Button>
                             </MenuItem>
                             <MenuItem onClick={(event) => {
                                 this.props.history.push("/logout")
