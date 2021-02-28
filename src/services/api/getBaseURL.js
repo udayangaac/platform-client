@@ -1,4 +1,4 @@
 function getBaseURL(path) {
-    return "http://161.35.130.122:8085" + path
+    return "http://www.classifidea.com:8085" + path
 }
 export default getBaseURL;
