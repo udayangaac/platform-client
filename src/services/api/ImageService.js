@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const baseUrl = "http://www.classifidea.com:8003";
+const baseUrl = "https://www.classifidea.com/storage";
 
 class ImageService {
 
