@@ -88,10 +88,8 @@ export default function MenuAppBar() {
                             open={handleOpenDropdown}
                             onClose={handleCloseDropdown}
                         >
-                            <MenuItem
-                                href="/dashboard"
-                            >
-                                <Button variant="text" size="small">Dashboard</Button>
+                            <MenuItem>
+                                <Button  href="/dashboard" variant="text" size="small">Dashboard</Button>
                             </MenuItem>
                             <MenuItem onClick={(event) => {
                                 this.props.history.push("/logout")
