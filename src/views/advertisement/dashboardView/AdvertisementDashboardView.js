@@ -259,7 +259,7 @@ class AdvertisementDashboardView extends Component {
 
     handleUploadClick(e) {
         console.log(this.state.images.length);
-        if (this.state.images.length > 4) {
+        if (this.state.images.length > 14) {
             this.setAlert(
                 true,
                 "Error",
@@ -713,14 +713,14 @@ class AdvertisementDashboardView extends Component {
                             </Button>}
 
                             {/* Button for admin usage */}
-                            {(this.props.type === 'admin') && <>
-                                <Button type="submit" variant="contained">
-                                    Approve
-                                </Button>
-                                <Button type="submit" variant="contained">
-                                    Block
-                                </Button>
-                            </>}
+                            {/*{(this.props.type === 'admin') && <>*/}
+                            {/*    <Button type="submit" variant="contained">*/}
+                            {/*        Approve*/}
+                            {/*    </Button>*/}
+                            {/*    <Button type="submit" variant="contained">*/}
+                            {/*        Block*/}
+                            {/*    </Button>*/}
+                            {/*</>}*/}
 
                         </Grid>
                     </form>
