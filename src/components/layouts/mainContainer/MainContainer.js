@@ -248,7 +248,7 @@ class MainContainer extends Component {
 
 
     getAdvertisementList(pageIndex) {
-        let url = getBaseURL("/public/v1/search?page_index=" + pageIndex + "&page_count=5");
+        let url = getBaseURL("/public/v1/search?page_index=" + pageIndex + "&page_count=20");
         axios.post(url, {
             search_terms: this.state.search_terms,
             category_ids: this.state.category_ids,
