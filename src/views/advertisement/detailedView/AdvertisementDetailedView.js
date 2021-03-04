@@ -113,7 +113,7 @@ const options = {
         thumbnailsIconColor: '#ffffff',
         thumbnailsOpacity: 0.4,
         thumbnailsPosition: 'bottom',
-        thumbnailsSize: ['200px', '200px']
+        thumbnailsSize: ['80px', '60px']
     },
     buttons: {
         iconPadding: "10px",
